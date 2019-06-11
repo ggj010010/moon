@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="event">
+	<resultMap type="com.spring.moon.dto.EventDTO" id="EventDTO">
+    	<result property="e_id" column="event_id"/>
+    	<result property="e_name" column="event_name"/>
+    	<result property="e_img" column="event_img"/>
+    	<result property="e_com" column="event_com"/>
+    </resultMap>
+    
+	<select id="selectEvent" resultMap="EventDTO">
+	/*event.selectEvent*/
+		SELECT *
+		FROM event
+	</select>
+	
+	<insert id="insertEvent" parameterType="com.spring.moon.dto.EventDTO">
+	/*event.insertEvent*/
+	<selectKey keyProperty="e_id" resultType="Integer" order="BEFORE"> 
+		SELECT 
+			nvl(TO_NUMBER(MAX(event_id)+1),0)
+		FROM
+			event 
+	</selectKey>
+		INSERT INTO
+			event
+			(
+    			event_id
+    			,event_name
+    			,event_img
+    			,event_com
+			)
+    	VALUES
+		(
+    		#{e_id}
+	  		,#{e_name}
+    		,#{e_img, jdbcType=VARCHAR}
+    		,#{e_com, jdbcType=VARCHAR}
+    	)
+    	
+	</insert>
+	
+	<update id="updateEvent" parameterType="com.spring.moon.dto.EventDTO">
+	/*event.updateEvent*/
+		UPDATE
+			event
+		SET
+			event_name = #{e_name}
+			,event_com = #{e_com }
+		WHERE
+			event_id = #{e_id}
+	
+	</update>
+	
+	<delete id="deleteEvent" parameterType="com.spring.moon.dto.EventDTO">
+	/*event.deleteEvent*/
+		DELETE
+		FROM
+			event
+		WHERE
+			event_id = #{e_id}
+	
+	</delete>
+	
+	<update id="fileNameUpdate" parameterType="com.spring.moon.dto.EventDTO">
+	/*event.fileNameUpdate*/
+		UPDATE
+			event
+		SET
+			event_img = #{e_img}
+		WHERE
+			event_id = #{e_id}
+	</update>
+</mapper>

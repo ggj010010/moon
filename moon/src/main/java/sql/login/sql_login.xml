@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="login">
+	<resultMap type="com.spring.moon.dto.CustomerDTO"
+		id="CustomerDTO">
+		<result property="c_id" column="cust_id" />
+		<result property="c_pw" column="cust_pw" />
+		<result property="c_tel" column="cust_tel" />
+		<result property="c_sex" column="cust_sex" />
+		<result property="c_name" column="cust_name" />
+		<result property="c_birth" column="cust_birth" />
+	</resultMap>
+
+	
+	<select id="Id_Check" resultType="int" parameterType="com.spring.moon.dto.CustomerDTO">
+		select count(*) from customer
+		where cust_id = #{c_id}
+	</select>
+	
+	<insert id="insertCustomer"
+		parameterType="com.spring.moon.dto.CustomerDTO"> 
+		INSERT into customer(cust_id, cust_pw, cust_tel, cust_sex, cust_name, cust_birth)
+		VALUES (#{c_id,jdbcType=VARCHAR}, #{c_pw,jdbcType=VARCHAR} , #{c_tel,jdbcType=VARCHAR} , #{c_sex,jdbcType=VARCHAR}, #{c_name,jdbcType=VARCHAR}, #{c_birth})
+	</insert>
+
+	<select id="Login" resultType="int">
+		select count(*) from customer
+		where cust_id = #{c_id} and cust_pw = #{c_pw}
+	</select>
+
+	<select id="Login_Info" resultMap="CustomerDTO">
+		select * from customer
+		where cust_id = #{c_id} and cust_pw = #{c_pw}
+	</select>
+</mapper>

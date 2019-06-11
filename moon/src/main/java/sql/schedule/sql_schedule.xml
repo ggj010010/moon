@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="schedule">
+	<resultMap type="com.spring.moon.dto.CustomerDTO"
+		id="CustomerDTO">
+		<result property="c_id" column="cust_id" />
+		<result property="c_pw" column="cust_pw" />
+		<result property="c_tel" column="cust_tel" />
+		<result property="c_sex" column="cust_sex" />
+		<result property="c_name" column="cust_name" />
+		<result property="c_birth" column="cust_birth" />
+	</resultMap>
+	<resultMap type="com.spring.moon.dto.RoomDTO" id="RoomDTO">
+		<result property="r_id" column="room_id" />
+		<result property="r_name" column="room_NAME" />
+		<result property="r_com" column="room_com" />
+		<result property="r_price" column="room_price" />
+		<result property="r_img" column="room_img" />
+	</resultMap>
+	<resultMap type="com.spring.moon.dto.ScheduleDTO"
+		id="ScheduleDTO">
+		<result property="s_id" column="sd_id" />
+		<result property="c_id" column="cust_id" />
+		<result property="r_id" column="room_id" />
+		<result property="in" column="check_in" />
+		<result property="out" column="check_out" />
+		<collection property="customerDTO" resultMap="CustomerDTO" />
+		<collection property="roomDTO" resultMap="RoomDTO" />
+	</resultMap>
+
+	<select id="selectSchedule" resultMap="ScheduleDTO">
+		/*schedule.selectSchedule*/
+		select
+			sd_id
+			,s.cust_id
+			,c.cust_name
+			,c.cust_tel
+			,r.room_name
+			,check_in
+			,check_out
+		from
+			schedule s
+			,customer c
+			,room r
+		where
+			s.cust_id = c.cust_id
+			and
+			s.room_id = r.room_id
+
+	</select>
+	<delete id="deleteSchedule"
+		parameterType="com.spring.moon.dto.ScheduleDTO">
+		/*schedule.deleteSchedule*/
+		DELETE
+		FROM
+			schedule
+		WHERE
+			sd_id = #{s_id ,jdbcType=VARCHAR}
+
+	</delete>
+
+</mapper>

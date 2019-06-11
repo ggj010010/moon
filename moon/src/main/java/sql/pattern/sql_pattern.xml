@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pattern">
+	<resultMap type="com.spring.moon.dto.PatternDTO" id="PatternDTO">
+    	<result property="p_id" column="patt_id"/>
+    	<result property="p_name" column="patt_name"/>
+    </resultMap>
+    
+	<select id="selectPattern" resultMap="PatternDTO">
+	/*pattern.selectPattern*/
+	SELECT *
+	FROM patt
+	</select>
+	
+	<insert id="insertPattern" parameterType="com.spring.moon.dto.PatternDTO">
+	/*pattern.insertPattern*/
+	<selectKey keyProperty="p_id" resultType="Integer" order="BEFORE"> 
+			SELECT 
+    				nvl(TO_NUMBER(MAX(patt_id)+1),0)
+	 			FROM
+	 				patt 
+	</selectKey>
+		INSERT INTO
+			patt
+			(
+    			patt_id
+    			,patt_name
+			)
+    	VALUES
+		(
+    		#{p_id}
+	  		,#{p_name}
+    	)
+    	
+	</insert>
+	
+	<delete id="deletePattern" parameterType="com.spring.moon.dto.PatternDTO">
+	/*pattern.deletePattern*/
+		DELETE
+		FROM
+			patt
+		WHERE
+			patt_id = #{p_id}
+	
+	</delete>
+</mapper>

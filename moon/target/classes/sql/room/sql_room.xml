@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="room">
+	<resultMap type="com.spring.moon.dto.RoomDTO" id="RoomDTO">
+    	<result property="r_id" column="room_id"/>
+    	<result property="r_name" column="room_NAME"/>
+    	<result property="r_com" column="room_com"/>
+    	<result property="r_price" column="room_price"/>
+    	<result property="r_img" column="room_img"/>
+    </resultMap>
+    
+	<select id="selectRoom" resultMap="RoomDTO">
+	/*room.selectRoom*/
+		SELECT *
+		FROM room
+	</select>
+	
+	<insert id="insertRoom" parameterType="com.spring.moon.dto.RoomDTO">
+	/*room.insertRoom*/
+	<selectKey keyProperty="r_id" resultType="Integer" order="BEFORE"> 
+		SELECT 
+			nvl(TO_NUMBER(MAX(room_id)+1),0)
+		FROM
+			room 
+	</selectKey>
+		INSERT INTO
+			room
+			(
+    			room_id
+    			,room_name
+    			,room_com
+    			,room_price
+    			,room_img
+			)
+    	VALUES
+		(
+    		#{r_id}
+	  		,#{r_name}
+    		,#{r_com, jdbcType=VARCHAR}
+    		,#{r_price}
+    		,#{r_img, jdbcType=VARCHAR}
+    	)
+    	
+	</insert>
+	
+	<update id="updateRoom" parameterType="com.spring.moon.dto.RoomDTO">
+	/*room.updateRoom*/
+		UPDATE
+			room
+		SET
+			room_name = #{r_name}
+			,room_com = #{r_com }
+			,room_price = #{r_price}
+		WHERE
+			room_id = #{r_id}
+	
+	</update>
+	
+	<delete id="deleteRoom" parameterType="com.spring.moon.dto.RoomDTO">
+	/*room.deleteRoom*/
+		DELETE
+		FROM
+			room
+		WHERE
+			room_id = #{r_id}
+	
+	</delete>
+	
+	<update id="fileNameUpdate" parameterType="com.spring.moon.dto.RoomDTO">
+	/*room.fileNameUpdate*/
+		UPDATE
+			room
+		SET
+			room_img = #{r_img}
+		WHERE
+			room_id = #{r_id}
+	</update>
+</mapper>

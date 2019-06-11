@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="customer">
+	<resultMap type="com.spring.moon.dto.CustomerDTO"
+		id="CustomerDTO">
+		<result property="c_id" column="cust_id" />
+		<result property="c_pw" column="cust_pw" />
+		<result property="c_tel" column="cust_tel" />
+		<result property="c_sex" column="cust_sex" />
+		<result property="c_name" column="cust_name" />
+		<result property="c_birth" column="cust_birth" />
+	</resultMap>
+
+	<select id="selectCustomer" resultMap="CustomerDTO">
+		/*customer.selectCustomer*/
+		SELECT *
+		FROM customer
+	</select>
+	<delete id="deleteCustomer"
+		parameterType="com.spring.moon.dto.CustomerDTO">
+		/*customer.deleteCustomer*/
+		DELETE
+		FROM
+		customer
+		WHERE
+		cust_id = #{c_id ,jdbcType=VARCHAR}
+
+	</delete>
+	
+
+
+</mapper>

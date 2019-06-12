@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="patternDetail">
+	<resultMap type="com.spring.moon.dto.PatternDetailDTO" id="PatternDetailDTO">
+    	<result property="pd_id" column="p_detail_id"/>
+    	<result property="ed_id" column="e_detail_id"/>
+    	<result property="pd_sort" column="p_detail_sort"/>
+    	<result property="pd_img" column="p_detail_img"/>
+    	<result property="pd_com" column="p_detail_com"/>
+    	<result property="pd_mv" column="p_detail_movie"/>
+    </resultMap>
+    
+    <select id="selectPatternDetail" parameterType="com.spring.moon.dto.PatternDetailDTO" resultMap="PatternDetailDTO">
+	/*patternDetail.selectPatternDetail*/
+		SELECT *
+		FROM p_detail
+		where e_detail_id = #{ed_id, jdbcType=INTEGER}
+	</select>
+</mapper>

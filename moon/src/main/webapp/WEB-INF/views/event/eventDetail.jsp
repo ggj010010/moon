@@ -6,6 +6,54 @@
 <html>
 <script type="text/javascript">
 	$j(document).ready(function(){
+		$j("#ed_table").children().children().next().next().not(":last").on("click",function(){
+			var $frm = $j(this).children().children();
+			var param = $frm.serialize();
+			
+			$j.ajax({
+				url : "/pattern/patternDetail",
+				dataType : "json",
+				type : "GET",
+				data : param,
+				success : function(returndata, textStatus, jqXHR){
+					$j("#pd_table caption").html(
+							"PatternDetail :: "+returndata.eventDetailDTO.p_sort	
+					);
+					$j("#pd_table > tbody:last").html(
+							"<tr>"
+							+'<td colspan="4" align="right" Style="border-style:hidden;">'
+							+'<input type="hidden" name="ed_id" value="'+returndata.ed_id+'" />'	
+							+'<input type="button" id="addPatternDetail" value="추가" Style="width:20%"/>'	
+							+'</td></tr>'
+							+"<th>img</th>"
+							+"<th>comment</th>"
+							+"<th>mv</th>"
+							+"<th>btn</th></tr>"
+					);
+					
+					for(var i = 0 ; i<Object.keys(returndata.patternDetailList).length;i++){
+							$j("#pd_table > tbody:last").append(
+									"<tr><td><img width='100' height='100' src='/resources/productPatternDetailFileUpload/" + returndata.patternDetailList[i].pd_img+"' alt ='"+ returndata.patternDetailList[i].pd_img+"'/>"
+									+"<input type='hidden' name='pd_img' value='"+returndata.patternDetailList[i].pd_img+"'/>"
+									+"</td><td>" + returndata.patternDetailList[i].pd_com
+									+"</td><td>" + returndata.patternDetailList[i].pd_mv
+									+"</td><td><input type='button' class='updatePatternDetail' value='수정'/>"
+									+"<input type='button' class='deletePatternDetail' value='삭제'/>"
+									+"<input type='hidden' name='pd_id' value='"+returndata.patternDetailList[i].pd_id+"'/></td></tr>"
+							);
+					}
+					$j("#pd_table > tbody:last").append(
+							"<tr></tr>"
+							);
+				},
+				error : function(jqXHR, textStatus, errorThrown){
+					alert("실패");
+			    	alert("code:"+jqXHR.status+"\n"+"message:"+jqXHR.responseText+"\n"+"error:"+errorThrown);
+
+				}
+			});
+			
+		});
 		
 	}).on("click","#addEventDetail",function(){
 		if($j("#insertEventDetail").length == 0){
@@ -94,12 +142,44 @@
 		</td>
 		<td>
 			<input class="deleteEventDetail" type="button" value="삭제">
+			<input type="hidden" name="ed_id" class="deleteEventDetail"  value="${edl.ed_id }">
 		</td>
 	</tr>
 	</c:forEach>
 	<tr>
 	</tr>
 </table>
+<br/>
+<hr/>
+<br/>
+<form>
+<table id="pd_table">
+<caption>
+	PatternDetail
+</caption>
+	<tr>
+		<td colspan="4" align="right" Style="border-style:hidden;">
+			<input type="button" id="addPatternDetail" value="추가" style="visibility: hidden;"/>
+		</td>
+	</tr>
+	<tr>
+		<th>
+			img
+		</th>
+		<th>
+			comment
+		</th>
+		<th>
+			mv
+		</th>
+		<th>
+			Btn
+		</th>
+	</tr>
+	<tr>
+	</tr>
+</table>
+</form>
 
 </body>
 </html>

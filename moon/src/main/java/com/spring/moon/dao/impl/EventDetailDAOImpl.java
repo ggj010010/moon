@@ -22,6 +22,12 @@ public class EventDetailDAOImpl implements EventDetailDAO {
 	}
 	
 	@Override
+	public EventDetailDTO selectEventDetailOne(String ed_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("eventDetail.selectEventDetailOne", ed_id);
+	}
+	
+	@Override
 	public int insertEventDetail(EventDetailDTO eventDetailDTO) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("eventDetail.insertEventDetail",eventDetailDTO);

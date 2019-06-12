@@ -15,6 +15,13 @@
 		FROM e_detail
 		where event_id = #{e_id, jdbcType=INTEGER}
 	</select>
+   
+    <select id="selectEventDetailOne" parameterType="com.spring.moon.dto.EventDetailDTO" resultMap="EventDetailDTO">
+	/*eventDetail.selectEventDetailOne*/
+		SELECT *
+		FROM e_detail
+		where e_detail_id = #{ed_id, jdbcType=INTEGER}
+	</select>
 	
 	<insert id="insertEventDetail" parameterType="com.spring.moon.dto.EventDetailDTO">
 	/*eventDetail.insertEventDetail*/

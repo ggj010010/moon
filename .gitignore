@@ -1,6 +1,5 @@
 /.metadata/
 /.recommenders/
-
 /Servers/
 moon/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 moon/target/m2e-wtp/web-resources/META-INF/maven/com.spring/moon/pom.properties

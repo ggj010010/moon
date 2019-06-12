@@ -20,5 +20,11 @@ public class EventDetailServiceImpl implements EventDetailService {
 		// TODO Auto-generated method stub
 		return eventDetailDAO.selectEventDetail(e_id);
 	}
+	
+	@Override
+	public int insertEventDetail(EventDetailDTO eventDetailDTO) {
+		// TODO Auto-generated method stub
+		return eventDetailDAO.insertEventDetail(eventDetailDTO);
+	}
 
 }

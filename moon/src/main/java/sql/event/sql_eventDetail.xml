@@ -15,5 +15,31 @@
 		FROM e_detail
 		where event_id = #{e_id, jdbcType=INTEGER}
 	</select>
+	
+	<insert id="insertEventDetail" parameterType="com.spring.moon.dto.EventDetailDTO">
+	/*eventDetail.insertEventDetail*/
+	<selectKey keyProperty="ed_id" resultType="Integer" order="BEFORE"> 
+			SELECT 
+    				nvl(TO_NUMBER(MAX(e_detail_id)+1),0)
+	 			FROM
+	 				e_detail 
+	</selectKey>
+		INSERT INTO
+			e_detail
+			(
+    			e_detail_id
+    			,event_id
+    			,patt_id
+    			,patt_sort
+			)
+    	VALUES
+		(
+    		#{ed_id}
+	  		,#{e_id}
+	  		,#{p_id}
+	  		,#{p_sort}
+    	)
+    	
+	</insert>
 
 </mapper>

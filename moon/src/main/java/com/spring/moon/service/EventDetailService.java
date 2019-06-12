@@ -8,4 +8,6 @@ public interface EventDetailService {
 
 	List<EventDetailDTO> selectEventDetail(String e_id);
 
+	int insertEventDetail(EventDetailDTO eventDetailDTO);
+
 }

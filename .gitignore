@@ -1,4 +1,6 @@
 /.metadata/
+/.recommenders/
+
 /Servers/
-ProjectYEE/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
-ProjectYEE/target/m2e-wtp/web-resources/META-INF/maven/com.project/steam/pom.properties
+moon/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+moon/target/m2e-wtp/web-resources/META-INF/maven/com.spring/moon/pom.properties

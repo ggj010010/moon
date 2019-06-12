@@ -8,6 +8,8 @@ public interface EventDAO {
 
 	List<EventDTO> selectEvent();
 
+	EventDTO selectEventOne(String e_id);
+
 	int insertEvent(EventDTO eventDTO);
 
 	int updateEvent(EventDTO eventDTO);
@@ -15,5 +17,5 @@ public interface EventDAO {
 	int deleteEvent(EventDTO eventDTO);
 
 	int fileNameUpdate(EventDTO eventDTO);
-
+	
 }

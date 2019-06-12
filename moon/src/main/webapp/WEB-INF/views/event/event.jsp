@@ -137,6 +137,10 @@
 		$resaveName=$saveName.replace(/	/g, "");
 		$saveCom = $j(this).parent().parent().children().eq(2).text();
 		$resaveCom=$saveCom.replace(/	/g, "");
+		$saveStart = $j(this).parent().parent().children().eq(3).text();
+		$resaveStart=$saveStart.replace(/	/g, "");
+		$saveEnd = $j(this).parent().parent().children().eq(4).text();
+		$resaveEnd=$saveEnd.replace(/	/g, "");
 		$saveId = $j(this).next().next().val();
 		$saveImgName = $j(this).parent().parent().children().eq(1).children("input").val();
 		
@@ -150,6 +154,12 @@
 				);
 		$j(this).parent().parent().children().eq(2).html(
 		'<input type="text" name="e_com" class="updateEvent" value="'+$resaveCom+'">'
+					);
+		$j(this).parent().parent().children().eq(3).html(
+		'<input type="date" name="e_start" class="updateEvent" value="'+$resaveStart+'">'
+					);
+		$j(this).parent().parent().children().eq(4).html(
+		'<input type="date" name="e_end" class="updateEvent" value="'+$resaveEnd+'">'
 					);
 		$j(this).parent().html(
 				'<input type="button" id="updateEventAction" value="확인"><input type="button" id="deleteEvent" value="삭제">'
@@ -257,6 +267,10 @@
 				class="insertEvent"></td>
 			<td><input type="text" name="e_com"
 				class="insertEvent"></td>
+			<td><input type="date" name="e_start"
+				class="insertEvent"></td>
+			<td><input type="date" name="e_end"
+				class="insertEvent"></td>
 			<td><input type="submit" id="insertEvent"
 				value="추가"></td>
 		</tr>
@@ -268,15 +282,19 @@
 			<th>name</th>
 			<th>img</th>
 			<th>comment</th>
+			<th>start</th>
+			<th>end</th>
 			<th>btn</th>
 		</tr>
 		<c:forEach var="el" items="${eventList }">
 			<tr>
-				<td>${el.e_name }</td>
+				<td><a href = "/event/eventDetail?e_id=${el.e_id }">${el.e_name }</a></td>
 				<td><input type="hidden" class="deleteEvent" name="e_img" value="${el.e_img }">
 				<img src="/resources/eventFileUpload/${el.e_img }" alt="${el.e_img }">
 				</td>
 				<td>${el.e_com }</td>
+				<td>${el.e_start }</td>
+				<td>${el.e_end }</td>
 				<td><input type="submit" id="updateEvent" value="수정">
 				<input type="submit" id="deleteEvent" value="삭제">
 				<input type="hidden" class="deleteEvent updateEvent" name="e_id" value="${el.e_id }"></td>

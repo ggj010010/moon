@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="eventDetail">
+	<resultMap type="com.spring.moon.dto.EventDetailDTO" id="EventDetailDTO">
+    	<result property="ed_id" column="e_detail_id"/>
+    	<result property="e_id" column="event_id"/>
+    	<result property="p_id" column="patt_id"/>
+    	<result property="p_sort" column="patt_sort"/>
+    </resultMap>
+    
+    <select id="selectEventDetail" parameterType="com.spring.moon.dto.EventDetailDTO" resultMap="EventDetailDTO">
+	/*eventDetail.selectEventDetail*/
+		SELECT *
+		FROM e_detail
+		where event_id = #{e_id, jdbcType=INTEGER}
+	</select>
+
+</mapper>

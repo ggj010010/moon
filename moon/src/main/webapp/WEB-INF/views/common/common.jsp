@@ -29,7 +29,7 @@ table {
 
 caption {
 	display: table-caption;
-	caption-side: bottom;
+	caption-side: top;
 }
 
 thead {

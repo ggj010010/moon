@@ -7,12 +7,21 @@
     	<result property="e_name" column="event_name"/>
     	<result property="e_img" column="event_img"/>
     	<result property="e_com" column="event_com"/>
+    	<result property="e_start" column="event_start"/>
+    	<result property="e_end" column="event_end"/>
     </resultMap>
     
 	<select id="selectEvent" resultMap="EventDTO">
 	/*event.selectEvent*/
 		SELECT *
 		FROM event
+	</select>
+
+	<select id="selectEventOne" parameterType="com.spring.moon.dto.EventDTO" resultMap="EventDTO">
+	/*event.selectEventOne*/
+		SELECT *
+		FROM event
+		where event_id = #{e_id, jdbcType=INTEGER}
 	</select>
 	
 	<insert id="insertEvent" parameterType="com.spring.moon.dto.EventDTO">
@@ -30,6 +39,9 @@
     			,event_name
     			,event_img
     			,event_com
+    			,event_start
+    			,event_end
+    			
 			)
     	VALUES
 		(
@@ -37,6 +49,9 @@
 	  		,#{e_name}
     		,#{e_img, jdbcType=VARCHAR}
     		,#{e_com, jdbcType=VARCHAR}
+    		,#{e_start}
+    		,#{e_end}
+    		
     	)
     	
 	</insert>
@@ -47,7 +62,9 @@
 			event
 		SET
 			event_name = #{e_name}
-			,event_com = #{e_com }
+			,event_com = #{e_com, jdbcType=VARCHAR}
+			,event_start = #{e_start }
+			,event_end = #{e_end }
 		WHERE
 			event_id = #{e_id}
 	

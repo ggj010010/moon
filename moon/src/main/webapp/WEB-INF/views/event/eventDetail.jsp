@@ -35,7 +35,7 @@ function patternDetail(param){
 							+"</td><td>" + returndata.patternDetailList[i].pd_com
 							+"</td><td>" + returndata.patternDetailList[i].pd_mv
 							+"</td><td>" + returndata.patternDetailList[i].pd_sort
-							+"</td><td><input type='button' class='updatePatternDetail' value='수정'/>"
+							+"</td><td>"
 							+"<input type='button' class='deletePatternDetail' value='삭제'/>"
 							+"<input type='hidden' name='pd_id' value='"+returndata.patternDetailList[i].pd_id+"'/></td></tr>"
 					);

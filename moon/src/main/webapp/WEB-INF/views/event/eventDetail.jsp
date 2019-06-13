@@ -68,7 +68,7 @@ function patternDetail(param){
 			</c:forEach>
 			$j("#ed_table").children().children().last().html(
 					'<td>'
-					+'<input type="hidden" id="e_id" class="insertEventDetail" value="${eventDTO.e_id }">'
+					+'<input type="hidden" name="e_id" class="insertEventDetail" value="${eventDTO.e_id }">'
 					+'<select name="p_id" class="insertEventDetail">'
 					+optionHtml
 					+'</select>'
@@ -219,6 +219,69 @@ function patternDetail(param){
 			    }//end error
 			});
 		}
+	}).on("click","#cancleEventDetail",function(){
+		$j(this).parent().parent().remove();
+		$j("#patternTable > tbody:last").append(
+				"<tr></tr>"
+				);
+	}).on("click","#canclePatternDetail",function(){
+		$j(this).parent().parent().remove();
+		$j("#detailTable > tbody:last").append(
+				"<tr></tr>"
+				);
+	}).on("click",".sortUpEvent",function(){
+		if($j(this).parent().parent().prev().children().eq(1).text().replace(/	/g, "").replace(/\n/g, "") == "PatternSort" || $j(this).parent().parent().prev().children().eq(1).text() == null){
+			alert("처음입니다.");
+		}else{
+			$savePrev = $j(this).parent().parent().prev().children().eq(1).text();
+			$resavePrev = $savePrev.replace(/	/g, "");
+			$saveThis = $j(this).parent().text();
+			$resaveThis = $saveThis.replace(/	/g, "");
+			
+			var $frm = $j("#e_id");
+			var param = $frm.serialize();
+			
+			$j.ajax({
+				url : "/event/sortChange?prev="+$resavePrev+"&this="+$resaveThis,
+				type : "POST",
+				data : param,
+				dataType : "JSON",
+				success : function(returndata, textStatus, jqXHR){
+					location.href = "/event/eventDetail?e_id="+returndata.e_id;
+				},
+				error : function(jqXHR, textStatus, errorThrown){
+					alert("실패");
+			    	alert("code:"+jqXHR.status+"\n"+"message:"+jqXHR.responseText+"\n"+"error:"+errorThrown);
+				}
+			});
+		}
+		
+	}).on("click",".sortDownEvent",function(){
+		if($j(this).parent().parent().next().children().eq(1).text() == "" || $j(this).parent().parent().next().children().eq(1).text() == null){
+			alert("마지막 입니다.");
+		}else{
+			$saveNext = $j(this).parent().parent().next().children().eq(1).text();
+			$resaveNext = $saveNext.replace(/	/g, "");
+			$saveThis = $j(this).parent().text();
+			$resaveThis = $saveThis.replace(/	/g, "");
+			
+			var $frm = $j("#e_id");
+			var param = $frm.serialize();
+			
+			$j.ajax({
+				url : "/event/sortChange?next="+$resaveNext+"&this="+$resaveThis,
+				type : "POST",
+				data : param,
+				dataType : "JSON",
+				success : function(returndata, textStatus, jqXHR){
+					location.href = "/event/eventDetail?e_id="+returndata.e_id;
+				},
+				error : function(jqXHR, textStatus, errorThrown){
+					alert("실패");
+			    	alert("code:"+jqXHR.status+"\n"+"message:"+jqXHR.responseText+"\n"+"error:"+errorThrown);
+				}
+			});
+		}
 	});
 </script>
 <head>
@@ -259,9 +322,9 @@ function patternDetail(param){
 			</select>
 		</td>
 		<td>
-			<input type="button" class="sortUp" value="△">
+			<input type="button" class="sortUpEvent" value="△">
 			${edl.p_sort }<input type="hidden"  name="p_sort" value="${edl.p_sort }">
-			<input type="button" class="sortDown" value="▽">
+			<input type="button" class="sortDownEvent" value="▽">
 		
 		</td>
 		<td>

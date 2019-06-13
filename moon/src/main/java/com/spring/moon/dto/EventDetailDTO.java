@@ -8,6 +8,9 @@ public class EventDetailDTO {
 	int e_id;
 	int p_id;
 	int p_sort;
+	int prevSort;
+	int nextSort;
+	
 	public int getEd_id() {
 		return ed_id;
 	}
@@ -32,6 +35,17 @@ public class EventDetailDTO {
 	public void setP_sort(int p_sort) {
 		this.p_sort = p_sort;
 	}
-	
+	public int getPrevSort() {
+		return prevSort;
+	}
+	public void setPrevSort(int prevSort) {
+		this.prevSort = prevSort;
+	}
+	public int getNextSort() {
+		return nextSort;
+	}
+	public void setNextSort(int nextSort) {
+		this.nextSort = nextSort;
+	}
 	
 }

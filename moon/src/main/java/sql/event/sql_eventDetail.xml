@@ -14,6 +14,7 @@
 		SELECT *
 		FROM e_detail
 		where event_id = #{e_id, jdbcType=INTEGER}
+		order by patt_sort asc
 	</select>
    
     <select id="selectEventDetailOne" parameterType="com.spring.moon.dto.EventDetailDTO" resultMap="EventDetailDTO">

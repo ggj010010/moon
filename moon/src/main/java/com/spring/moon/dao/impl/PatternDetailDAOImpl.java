@@ -20,4 +20,16 @@ public class PatternDetailDAOImpl implements PatternDetailDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("patternDetail.selectPatternDetail",ed_id);
 	}
+	
+	@Override
+	public int insertPatternDetail(PatternDetailDTO patternDetailDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("patternDetail.insertPatternDetail",patternDetailDTO);
+	}
+	
+	@Override
+	public int fileNameUpdate(PatternDetailDTO patternDetailDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("patternDetail.fileNameUpdate", patternDetailDTO);
+	}
 }

@@ -8,4 +8,8 @@ public interface PatternDetailDAO {
 
 	List<PatternDetailDTO> selectPatternDetail(String ed_id);
 
+	int insertPatternDetail(PatternDetailDTO patternDetailDTO);
+
+	int fileNameUpdate(PatternDetailDTO patternDetailDTO);
+
 }

@@ -12,7 +12,7 @@
 </head>
 <style type="text/css">
 img {
-	height: 50px;
+	height: 30px;
 }
 
 input {

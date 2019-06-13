@@ -16,5 +16,48 @@
 		SELECT *
 		FROM p_detail
 		where e_detail_id = #{ed_id, jdbcType=INTEGER}
+		order by p_detail_sort asc
 	</select>
+	
+	<insert id="insertPatternDetail" parameterType="com.spring.moon.dto.PatternDetailDTO">
+	/*patternDetail.insertPatternDetail*/
+	<selectKey keyProperty="pd_id" resultType="Integer" order="BEFORE"> 
+		SELECT 
+			nvl(TO_NUMBER(MAX(p_detail_id)+1),0)
+		FROM
+			p_detail 
+	</selectKey>
+		INSERT INTO
+			p_detail
+			(
+    			p_detail_id
+    			,e_detail_id
+    			,p_detail_sort
+    			,p_detail_img
+    			,p_detail_com
+    			,p_detail_movie
+    			
+			)
+    	VALUES
+		(
+    		#{pd_id}
+	  		,#{ed_id}
+    		,#{pd_sort, jdbcType=VARCHAR}
+    		,#{pd_img, jdbcType=VARCHAR}
+    		,#{pd_com, jdbcType=VARCHAR}
+    		,#{pd_mv, jdbcType=VARCHAR}
+    		
+    	)
+    	
+	</insert>
+	
+	<update id="fileNameUpdate" parameterType="com.spring.moon.dto.PatternDetailDTO">
+	/*patternDetail.fileNameUpdate*/
+		UPDATE
+			p_detail
+		SET
+			p_detail_img = #{pd_img}
+		WHERE
+			p_detail_id = #{pd_id}
+	</update>
 </mapper>

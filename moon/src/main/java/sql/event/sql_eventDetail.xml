@@ -49,5 +49,51 @@
     	)
     	
 	</insert>
+	
+	<update id="sortChangeUP" parameterType="com.spring.moon.dto.EventDetailDTO">
+	/*eventDetail.sortChangeUP*/
+		UPDATE
+			e_detail
+		SET
+			patt_sort = CASE
+			
+			WHEN
+				patt_sort = #{p_sort}
+			THEN
+				 #{prevSort}
+			WHEN
+				patt_sort = #{prevSort}
+			THEN
+				#{p_sort}
+			END
+		WHERE
+			patt_sort 
+		IN
+			(#{p_sort},#{prevSort})
+	
+	</update>
+	
+	<update id="sortChangeDOWN" parameterType="com.spring.moon.dto.EventDetailDTO">
+	/*eventDetail.sortChangeDOWN*/
+		UPDATE
+			e_detail
+		SET
+			patt_sort = CASE
+			
+			WHEN
+				patt_sort = #{nextSort}
+			THEN
+				 #{p_sort}
+			WHEN
+				patt_sort = #{p_sort}
+			THEN
+				#{nextSort}
+			END
+		WHERE
+			patt_sort 
+		IN
+			(#{nextSort},#{p_sort})
+	
+	</update>
 
 </mapper>

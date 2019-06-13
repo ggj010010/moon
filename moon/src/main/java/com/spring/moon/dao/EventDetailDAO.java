@@ -12,4 +12,8 @@ public interface EventDetailDAO {
 	
 	int insertEventDetail(EventDetailDTO eventDetailDTO);
 
+	int sortChangeUP(EventDetailDTO eventDetailDTO);
+
+	int sortChangeDOWN(EventDetailDTO eventDetailDTO);
+
 }

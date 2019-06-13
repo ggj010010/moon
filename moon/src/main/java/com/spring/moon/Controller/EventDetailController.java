@@ -81,4 +81,37 @@ public class EventDetailController {
 		
 		return callbackMsg;
 	}
+	
+	@RequestMapping(value="/event/sortChange",method = RequestMethod.POST)
+	@ResponseBody
+	public String sortChange(EventDetailDTO eventDetailDTO
+			,HttpServletRequest request) throws Exception{
+		logger.info("sortChange");
+		HashMap<String, String> result = new HashMap<String, String>();
+		
+		CommonUtil commonUtil = new CommonUtil(); 
+		
+		String prevSort = (String)request.getParameter("prev");
+		String thisSort = (String)request.getParameter("this");
+		String nextSort = (String)request.getParameter("next");
+		if(nextSort != null) {
+			eventDetailDTO.setNextSort(Integer.parseInt(nextSort));
+		}
+		if(prevSort != null) {
+			eventDetailDTO.setPrevSort(Integer.parseInt(prevSort));
+		}
+		if(thisSort != null) {
+			eventDetailDTO.setP_sort(Integer.parseInt(thisSort));
+		}
+
+		int resultCnt = eventDetailService.sortChange(eventDetailDTO);
+		result.put("success", (resultCnt > 0)?"Y":"N");
+		result.put("e_id", Integer.toString(eventDetailDTO.getE_id()));
+	
+		
+		String callbackMsg = commonUtil.getJsonCallBackString(" ",result);
+		
+		System.out.println("callbackMsg::"+callbackMsg);
+		return callbackMsg;
+	}
 }

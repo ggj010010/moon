@@ -12,4 +12,6 @@ public interface EventDetailService {
 
 	int insertEventDetail(EventDetailDTO eventDetailDTO);
 
+	int sortChange(EventDetailDTO eventDetailDTO);
+
 }

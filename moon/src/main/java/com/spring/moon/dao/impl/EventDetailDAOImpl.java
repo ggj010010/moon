@@ -32,5 +32,17 @@ public class EventDetailDAOImpl implements EventDetailDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("eventDetail.insertEventDetail",eventDetailDTO);
 	}
+	
+	@Override
+	public int sortChangeUP(EventDetailDTO eventDetailDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("eventDetail.sortChangeUP",eventDetailDTO);
+	}
+	
+	@Override
+	public int sortChangeDOWN(EventDetailDTO eventDetailDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("eventDetail.sortChangeDOWN",eventDetailDTO);
+	}
 
 }

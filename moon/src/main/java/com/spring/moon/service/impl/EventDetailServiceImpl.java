@@ -32,5 +32,18 @@ public class EventDetailServiceImpl implements EventDetailService {
 		// TODO Auto-generated method stub
 		return eventDetailDAO.insertEventDetail(eventDetailDTO);
 	}
+	
+	@Override
+	public int sortChange(EventDetailDTO eventDetailDTO) {
+		// TODO Auto-generated method stub
+		if(eventDetailDTO.getNextSort() == 0) {
+			return eventDetailDAO.sortChangeUP(eventDetailDTO);
+		}
+		else if(eventDetailDTO.getPrevSort() == 0) {
+			return eventDetailDAO.sortChangeDOWN(eventDetailDTO);
+		}else {
+			return 0;
+		}
+	}
 
 }

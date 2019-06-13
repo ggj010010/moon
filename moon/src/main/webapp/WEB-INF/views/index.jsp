@@ -45,6 +45,7 @@
         	<c:otherwise>
         		<li><a>${sessionScope.c.c_id}님</a></li>
         		<li><a href="/logout">로그아웃</a></li>
+        		<li><a href="/board/test2">게시판</a></li>
         	</c:otherwise>
         </c:choose>
       </ul>

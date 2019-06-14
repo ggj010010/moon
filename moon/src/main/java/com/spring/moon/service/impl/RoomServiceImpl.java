@@ -48,6 +48,12 @@ public class RoomServiceImpl implements RoomService{
 	}
 	
 	@Override
+	public RoomDTO selectRoomOne(RoomDTO roomDTO) {
+		// TODO Auto-generated method stub
+		return roomDAO.selectRoomOne(roomDTO);
+	}
+	
+	@Override
 	public int fileNameUpdate(int r_id, String fileName) {
 		// TODO Auto-generated method stub
 		RoomDTO roomDTO = new RoomDTO();

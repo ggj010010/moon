@@ -19,4 +19,6 @@ public interface RoomDAO {
 
 	public List<RoomDTO> selectRoomView(PagingDTO pagingDTO);
 
+	public RoomDTO selectRoomOne(RoomDTO roomDTO);
+
 }

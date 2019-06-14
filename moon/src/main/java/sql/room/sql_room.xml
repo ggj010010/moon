@@ -22,13 +22,21 @@
 		FROM room
 	</select>
 	
+	<select id="selectRoomOne" parameterType="com.spring.moon.dto.RoomDTO" resultMap="RoomDTO">
+	/*room.selectRoomOne*/
+		SELECT *
+		FROM room
+		where room_id = #{r_id}
+	</select>
+	
 	<select id="selectRoomView" parameterType="com.spring.moon.dto.PagingDTO" resultMap="RoomDTO">
-	/*room.selectRoom*/
+	/*room.selectRoomView*/
 		SELECT *
 		FROM 
 		(
 			select
-				room_name
+				room_id
+				,room_name
 				,room_com
 				,room_img
 				,row_number() over(order by room_id) as numrow

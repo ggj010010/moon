@@ -52,7 +52,7 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/room")
 	public String room(Model model,PagingDTO pagingDTO) throws Exception {
-		logger.info("room");
+		logger.info("room :: page :: " + pagingDTO.getPageNo());
  		int pageNo = 1;
 		
  		if(pagingDTO.getPageNo() <= 0 ) {
@@ -66,8 +66,11 @@ public class HomeController {
 		return "room";
 	}
 	@RequestMapping(value = "/roomdetail")
-	public String roomdetail(Model model) throws Exception {
-
+	public String roomdetail(Model model,RoomDTO roomDTO) throws Exception {
+		logger.info("roomdetail :: r_id :: " + roomDTO.getR_id());
+		
+		model.addAttribute("roomDetail", roomService.selectRoomOne(roomDTO));
+		
 		return "roomdetail";
 	}
 	@RequestMapping(value = "/report")

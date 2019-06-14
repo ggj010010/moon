@@ -47,6 +47,12 @@ public class RoomDAOImpl implements RoomDAO{
 	}
 	
 	@Override
+	public RoomDTO selectRoomOne(RoomDTO roomDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("room.selectRoomOne",roomDTO);
+	}
+	
+	@Override
 	public int fileNameUpdate(RoomDTO roomDTO) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("room.fileNameUpdate", roomDTO);

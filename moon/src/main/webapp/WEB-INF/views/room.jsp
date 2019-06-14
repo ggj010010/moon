@@ -63,7 +63,7 @@
 		  			<div class="info">
 		  				<h3>${rl.r_name }</h3>
 		  				<p> ${rl.r_com }</p>
-		  				<a href="http://localhost:8181/roomdetail" class="btn btn-default">자세히 보기</a>
+		  				<a href="roomdetail?r_id=${rl.r_id }" class="btn btn-default">자세히 보기</a>
 		  			</div>
 		  		</div>
 		  	</div>

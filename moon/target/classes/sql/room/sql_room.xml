@@ -2,18 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="room">
+    <resultMap type="com.spring.moon.dto.PagingDTO" id="PagingDTO">
+    	<result property="pageNo" column="numrow"/>
+    	<result property="totalCnt" column="totalcnt"/>
+    </resultMap>
 	<resultMap type="com.spring.moon.dto.RoomDTO" id="RoomDTO">
     	<result property="r_id" column="room_id"/>
     	<result property="r_name" column="room_NAME"/>
     	<result property="r_com" column="room_com"/>
     	<result property="r_price" column="room_price"/>
     	<result property="r_img" column="room_img"/>
+    	<collection property="pagingDTO" resultMap="PagingDTO" />
     </resultMap>
+    
     
 	<select id="selectRoom" resultMap="RoomDTO">
 	/*room.selectRoom*/
 		SELECT *
 		FROM room
+	</select>
+	
+	<select id="selectRoomView" parameterType="com.spring.moon.dto.PagingDTO" resultMap="RoomDTO">
+	/*room.selectRoom*/
+		SELECT *
+		FROM 
+		(
+			select
+				room_name
+				,room_com
+				,room_img
+				,row_number() over(order by room_id) as numrow
+				,count(*) over() as totalcnt
+			from
+				room
+			order by room_price desc
+		)
+		where numrow between (#{pageNo, jdbcType=NUMERIC}-1)*4 + 1 AND #{pageNo, jdbcType=NUMERIC}*4
+		
 	</select>
 	
 	<insert id="insertRoom" parameterType="com.spring.moon.dto.RoomDTO">

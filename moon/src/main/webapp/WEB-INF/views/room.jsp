@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,35 +53,41 @@
 
 <h2>Rooms & Tariff</h2>
 
-
 <!-- form -->
 
-<div class="row">
-  <div class="col-sm-6 wowload fadeInUp"><div class="rooms"><img src="assets/images/photos/8.jpg" class="img-responsive"><div class="info"><h3>Luxirious Suites</h3><p> Missed lovers way one vanity wishes nay but. Use shy seemed within twenty wished old few regret passed. Absolute one hastened mrs any sensible</p><a href="http://localhost:8181/roomdetail" class="btn btn-default">Check Details</a></div></div></div>
-  <div class="col-sm-6 wowload fadeInUp"><div class="rooms"><img src="assets/images/photos/9.jpg" class="img-responsive"><div class="info"><h3>Luxirious Suites</h3><p> Missed lovers way one vanity wishes nay but. Use shy seemed within twenty wished old few regret passed. Absolute one hastened mrs any sensible</p><a href="http://localhost:8181/roomdetail" class="btn btn-default">Check Details</a></div></div></div>
-  <div class="col-sm-6 wowload fadeInUp"><div class="rooms"><img src="assets/images/photos/10.jpg" class="img-responsive"><div class="info"><h3>Luxirious Suites</h3><p> Missed lovers way one vanity wishes nay but. Use shy seemed within twenty wished old few regret passed. Absolute one hastened mrs any sensible</p><a href="http://localhost:8181/roomdetail" class="btn btn-default">Check Details</a></div></div></div>
-  <div class="col-sm-6 wowload fadeInUp"><div class="rooms"><img src="assets/images/photos/11.jpg" class="img-responsive"><div class="info"><h3>Luxirious Suites</h3><p> Missed lovers way one vanity wishes nay but. Use shy seemed within twenty wished old few regret passed. Absolute one hastened mrs any sensible</p><a href="http://localhost:8181/roomdetail" class="btn btn-default">Check Details</a></div></div></div>
-  <div class="col-sm-6 wowload fadeInUp"><div class="rooms"><img src="assets/images/photos/9.jpg" class="img-responsive"><div class="info"><h3>Luxirious Suites</h3><p> Missed lovers way one vanity wishes nay but. Use shy seemed within twenty wished old few regret passed. Absolute one hastened mrs any sensible</p><a href="http://localhost:8181/roomdetail" class="btn btn-default">Check Details</a></div></div></div>
-  <div class="col-sm-6 wowload fadeInUp"><div class="rooms"><img src="assets/images/photos/8.jpg" class="img-responsive"><div class="info"><h3>Luxirious Suites</h3><p> Missed lovers way one vanity wishes nay but. Use shy seemed within twenty wished old few regret passed. Absolute one hastened mrs any sensible</p><a href="http://localhost:8181/roomdetail" class="btn btn-default">Check Details</a></div></div></div>
-  <div class="col-sm-6 wowload fadeInUp"><div class="rooms"><img src="assets/images/photos/10.jpg" class="img-responsive"><div class="info"><h3>Luxirious Suites</h3><p> Missed lovers way one vanity wishes nay but. Use shy seemed within twenty wished old few regret passed. Absolute one hastened mrs any sensible</p><a href="http://localhost:8181/roomdetail" class="btn btn-default">Check Details</a></div></div></div>
-  <div class="col-sm-6 wowload fadeInUp"><div class="rooms"><img src="assets/images/photos/11.jpg" class="img-responsive"><div class="info"><h3>Luxirious Suites</h3><p> Missed lovers way one vanity wishes nay but. Use shy seemed within twenty wished old few regret passed. Absolute one hastened mrs any sensible</p><a href="http://localhost:8181/roomdetail" class="btn btn-default">Check Details</a></div></div></div>
-  <div class="col-sm-6 wowload fadeInUp"><div class="rooms"><img src="assets/images/photos/9.jpg" class="img-responsive"><div class="info"><h3>Luxirious Suites</h3><p> Missed lovers way one vanity wishes nay but. Use shy seemed within twenty wished old few regret passed. Absolute one hastened mrs any sensible</p><a href="http://localhost:8181/roomdetail" class="btn btn-default">Check Details</a></div></div></div>
-  <div class="col-sm-6 wowload fadeInUp"><div class="rooms"><img src="assets/images/photos/8.jpg" class="img-responsive"><div class="info"><h3>Luxirious Suites</h3><p> Missed lovers way one vanity wishes nay but. Use shy seemed within twenty wished old few regret passed. Absolute one hastened mrs any sensible</p><a href="http://localhost:8181/roomdetail" class="btn btn-default">Check Details</a></div></div></div>
-  <div class="col-sm-6 wowload fadeInUp"><div class="rooms"><img src="assets/images/photos/11.jpg" class="img-responsive"><div class="info"><h3>Luxirious Suites</h3><p> Missed lovers way one vanity wishes nay but. Use shy seemed within twenty wished old few regret passed. Absolute one hastened mrs any sensible</p><a href="http://localhost:8181/roomdetail" class="btn btn-default">Check Details</a></div></div></div>
-  <div class="col-sm-6 wowload fadeInUp"><div class="rooms"><img src="assets/images/photos/10.jpg" class="img-responsive"><div class="info"><h3>Luxirious Suites</h3><p> Missed lovers way one vanity wishes nay but. Use shy seemed within twenty wished old few regret passed. Absolute one hastened mrs any sensible</p><a href="http://localhost:8181/roomdetail" class="btn btn-default">Check Details</a></div></div></div>  
-</div>
+	<div class="row">
+		<c:forEach var = "rl" items="${roomList }">
+		  <div class="col-sm-6 wowload fadeInUp">
+		  	<div class="rooms">
+		  		<img src="resources/roomFileUpload/${rl.r_img }" class="img-responsive">
+		  			<div class="info">
+		  				<h3>${rl.r_name }</h3>
+		  				<p> ${rl.r_com }</p>
+		  				<a href="http://localhost:8181/roomdetail" class="btn btn-default">자세히 보기</a>
+		  			</div>
+		  		</div>
+		  	</div>
+		</c:forEach>
+	</div>
 
-                     <div class="text-center">
-                     <ul class="pagination">
-                     <li class="disabled"><a href="#">«</a></li>
-                     <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                     <li><a href="#">2</a></li>
-                     <li><a href="#">3</a></li>
-                     <li><a href="#">4</a></li>
-                     <li><a href="#">5</a></li>
-                     <li><a href="#">»</a></li>
-                     </ul>
-                     </div>
+	<div class="text-center">
+		<c:if test="${totalCnt/4 >1 }">
+			<ul class="pagination">
+				<li class="disabled"><a href="#">«</a></li>
+				<c:forEach var="i" begin="1" end="${totalCnt/4 +1}">
+					<c:choose>
+						<c:when test="${pageNo==i }">
+							<li class="active"><a href="room?pageNo=${i }">${i } <span class="sr-only">(current)</span></a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="room?pageNo=${i }">${i }</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<li class="disabled"><a href="#">»</a></li>
+			</ul>
+		</c:if>
+	</div>
 
 
 </div>

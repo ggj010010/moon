@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.moon.dao.RoomDAO;
+import com.spring.moon.dto.PagingDTO;
 import com.spring.moon.dto.RoomDTO;
 import com.spring.moon.service.RoomService;
 
@@ -38,6 +39,12 @@ public class RoomServiceImpl implements RoomService{
 		// TODO Auto-generated method stub
 		System.out.println(roomDTO.toString());
 		return roomDAO.deleteRoom(roomDTO);
+	}
+	
+	@Override
+	public List<RoomDTO> selectRoomView(PagingDTO pagingDTO) {
+		// TODO Auto-generated method stub
+		return roomDAO.selectRoomView(pagingDTO);
 	}
 	
 	@Override

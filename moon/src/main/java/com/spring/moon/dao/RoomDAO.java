@@ -2,6 +2,7 @@ package com.spring.moon.dao;
 
 import java.util.List;
 
+import com.spring.moon.dto.PagingDTO;
 import com.spring.moon.dto.RoomDTO;
 
 public interface RoomDAO {
@@ -15,5 +16,7 @@ public interface RoomDAO {
 	public int deleteRoom(RoomDTO roomDTO);
 
 	public int updateRoom(RoomDTO roomDTO);
+
+	public List<RoomDTO> selectRoomView(PagingDTO pagingDTO);
 
 }

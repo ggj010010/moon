@@ -8,6 +8,14 @@ public class RoomDTO {
 	int r_price;
 	String r_img;
 	
+	PagingDTO pagingDTO;
+	
+	public PagingDTO getPagingDTO() {
+		return pagingDTO;
+	}
+	public void setPagingDTO(PagingDTO pagingDTO) {
+		this.pagingDTO = pagingDTO;
+	}
 	public int getR_id() {
 		return r_id;
 	}

@@ -10,4 +10,6 @@ public interface ScheduleDAO {
 
 	int deleteSchedule(ScheduleDTO scheduleDTO);
 
+	int insertSchedule(ScheduleDTO scheduleDTO);
+
 }

@@ -22,6 +22,12 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 	
 	@Override
+	public int insertSchedule(ScheduleDTO scheduleDTO) {
+		// TODO Auto-generated method stub
+		return scheduleDAO.insertSchedule(scheduleDTO);
+	}
+	
+	@Override
 	public int deleteSchedule(ScheduleDTO scheduleDTO) {
 		// TODO Auto-generated method stub
 		return scheduleDAO.deleteSchedule(scheduleDTO);

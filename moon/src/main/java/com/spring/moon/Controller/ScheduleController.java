@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.moon.common.CommonUtil;
 import com.spring.moon.dto.CustomerDTO;
+import com.spring.moon.dto.PatternDTO;
 import com.spring.moon.dto.ScheduleDTO;
 import com.spring.moon.service.ScheduleService;
 
@@ -34,9 +35,31 @@ public class ScheduleController {
 		return "schedule/schedule";
 	}
 	
+	@RequestMapping(value = "/schedule/insertSchedule", method = {RequestMethod.GET})
+	@ResponseBody
+	public String insertSchedule(ScheduleDTO scheduleDTO) throws Exception {
+		logger.info("insertSchedule");
+
+		HashMap<String, String> result = new HashMap<String, String>();
+		CommonUtil commonUtil = new CommonUtil();
+		int resultCnt = scheduleService.insertSchedule(scheduleDTO);
+
+		System.out.println("insert p_id : " + scheduleDTO.getC_id());
+		result.put("success", (resultCnt > 0) ? "Y" : "N");
+		result.put("c_id", scheduleDTO.getC_id());
+
+		String callbackMsg = commonUtil.getJsonCallBackString(" ", result);
+
+		System.out.println("callbackMsg::" + callbackMsg);
+
+		return callbackMsg;
+	}
+	
 	@RequestMapping(value = "/schedule/deleteSchedule", method = RequestMethod.GET, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String deleteSchedule(Locale locale, ScheduleDTO scheduleDTO) throws Exception {
+		logger.info("deleteSchedule");
+		
 		System.out.println(scheduleDTO.getS_id());
 		HashMap<String, String> result = new HashMap<String, String>();
 		CommonUtil commonUtil = new CommonUtil();

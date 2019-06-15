@@ -49,6 +49,35 @@
 			s.room_id = r.room_id
 
 	</select>
+	
+	<insert id="insertSchedule" parameterType="com.spring.moon.dto.ScheduleDTO">
+	/*schedule.insertSchedule*/
+	<selectKey keyProperty="s_id" resultType="Integer" order="BEFORE"> 
+			SELECT 
+    				nvl(TO_NUMBER(MAX(sd_id)+1),0)
+	 			FROM
+	 				schedule 
+	</selectKey>
+		INSERT INTO
+			schedule
+			(
+    			sd_id
+    			,cust_id
+    			,room_id
+    			,check_in
+    			,check_out
+			)
+    	VALUES
+		(
+    		#{s_id}
+	  		,#{c_id}
+	  		,#{r_id}
+	  		,#{in}
+	  		,#{out}
+    	)
+    	
+	</insert>
+	
 	<delete id="deleteSchedule"
 		parameterType="com.spring.moon.dto.ScheduleDTO">
 		/*schedule.deleteSchedule*/

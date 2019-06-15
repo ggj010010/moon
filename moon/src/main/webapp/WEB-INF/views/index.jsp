@@ -22,6 +22,10 @@
 #freecssfooter div#fcssholder div:first-child a{float:none;margin:0 auto;}
 </style></head>
 <body id="home">
+<script src="/resources/js/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	var $j = jQuery.noConflict();
+</script>
 <script type="text/javascript">
 (function(){
   var bsa = document.createElement('script');
@@ -30,6 +34,35 @@
      bsa.src = '//s3.buysellads.com/ac/bsa.js';
   (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
 })();
+
+$j(document).ready(function() {
+	
+}).on("click","#insertSchedule",function(){
+	
+	var $frm = $j(".insertSchedule");
+	var param = $frm.serialize();
+	//값전송
+	$j.ajax({
+		url : "/schedule/insertSchedule",
+		dataType: "json",
+	    type: "GET",
+	    data : param,
+	    timeout: 3000,
+	    success: function(returndata, textStatus, jqXHR)
+	    {
+	    	//하위 주소로 이동
+	    	//이동시 보고있던 화면에 insert추가후 뿌려줌
+	    	location.href = "/";
+	    },//end success
+	    error : function (jqXHR, textStatus, errorThrown)
+	    {
+	    	alert("실패");
+	    	console.log(error);
+            console.log(error.status);
+	    }//end error
+	});
+});
+
 </script>
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
@@ -40,18 +73,12 @@
       <ul class="nav navbar-nav">
       	<c:choose>
       		<c:when test="${sessionScope.c.c_id == null}">
-      		    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
-       		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
-                <li><a href="http://localhost:8181/report">문의하기</a></li>
         		<li><a href="http://localhost:8181/login/login">로그인</a></li>
         	</c:when>
         	<c:otherwise>
-        		<li><a href="http://localhost:8181/room">방 둘러보기</a></li>
-       		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
-                <li><a href="http://localhost:8181/report">문의하기</a></li>
-        		<li><a href="/board/test2">게시판</a></li>
         		<li><a>${sessionScope.c.c_id}님</a></li>
         		<li><a href="/logout">로그아웃</a></li>
+        		<li><a href="/board/test2">게시판</a></li>
         	</c:otherwise>
         </c:choose>
       </ul>
@@ -83,10 +110,9 @@
 				<c:otherwise>
 					<div class="col-sm-5 col-md-4">
 						<h3>예약하기</h3>
-						<form action="#" method="post" class="wowload fadeInRight">
 							<div class="form-group">
 								<input type="text" class="form-control" placeholder="예약자 성명" value="${sessionScope.c.c_id }">
-								<input type="hidden" class="insertSchedule" value="${sessionScope.c.c_id }" />
+								<input type="hidden" name="c_id" class="insertSchedule" value="${sessionScope.c.c_id }" />
 							</div>
 
 							<div class="form-group">
@@ -95,36 +121,25 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-xs-6">
-										<select class="form-control insertSchedule">
+										<select name="r_id" class="form-control insertSchedule">
 											<c:forEach var="rl" items="${roomList }">
 												<option value="${rl.r_id }">${rl.r_name }</option>
 											</c:forEach>
-										</select>
-									</div>
-									<div class="col-xs-6">
-										<select class="form-control">
-											<option>인원수</option>
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
 										</select>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="ui left icon input">
-									<input type="date" id="firstday" size="9"
+									<input class="insertSchedule" name="in" type="date" id="firstday" size="9"
 										onKeyPress="addDash(this)" maxlength="10"> 입실날짜
 								</div>
 								<div class="ui left icon input">
-									<input type="date" id="Lastday" size="9"
+									<input class="insertSchedule" name="out" type="date" id="Lastday" size="9"
 										onKeyPress="addDash(this)" maxlength="10"> 퇴실날짜
 								</div>
-								<button class="btn btn-default">확인</button>
+								<button class="btn btn-default" id="insertSchedule">확인</button>
 							</div>
-						</form>
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -176,7 +191,7 @@
         요식업, 건축업 등 다양한 분야에 도전하고 있습니다.</p>
       </div>
       <div class="col-sm-3">
-        <h4>Quick Manual</h4>
+        <h4>Quick Menual</h4>
         <ul class="list-unstyled">
           <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
           <li><a href="http://localhost:8181/locate">호텔소개</a></li>

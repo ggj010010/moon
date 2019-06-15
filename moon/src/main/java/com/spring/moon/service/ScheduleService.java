@@ -10,4 +10,6 @@ public interface ScheduleService {
 
 	int deleteSchedule(ScheduleDTO scheduleDTO);
 
+	int insertSchedule(ScheduleDTO scheduleDTO);
+
 }

@@ -41,6 +41,7 @@ public class HomeController {
 		
 		String formattedDate = dateFormat.format(date);
 		
+		model.addAttribute("roomList", roomService.selectRoom());
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "index";

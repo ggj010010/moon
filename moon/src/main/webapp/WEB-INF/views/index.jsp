@@ -70,61 +70,59 @@
           <iframe class="embed-responsive-item" src="//player.vimeo.com/video/194467071?title=0" width="100%" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
       </div>
-      <div class="col-sm-5 col-md-4">
-        <h3>예약하기</h3>
-        <form action="#" method="post" class="wowload fadeInRight">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="예약자 성명">
-          </div>
- 
-          <div class="form-group">
-            <input type="Phone" class="form-control" placeholder="휴대폰 번호">
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-xs-6">
-                <select class="form-control">
-                  <option>방 종류</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-              <div class="col-xs-6">
-                <select class="form-control">
-                  <option>인원수</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-            </div>
-          </div>
-             <div class="form-group">
-             
-                  <div class="ui left icon input">
-                     <input type="date" id="firstday" size="9"  
-                     onKeyPress="addDash(this)"
-                     maxlength="10">
-                   	    입실날짜
-                  </div>
-                  <div class="ui left icon input">
-                     <input type="date" id="Lastday" size="9"  
-                     onKeyPress="addDash(this)"
-                     maxlength="10">
-                   	     퇴실날짜
-                  </div>
-          <div class="form-group">
-            <textarea class="form-control" placeholder="남길말" rows="4"></textarea>
-          </div>
-          <button class="btn btn-default">확인</button>
-        </form>
-      </div>
-    </div>
+			<c:choose>
+				<c:when test="${sessionScope.c.c_id == null}">
+					<div class="col-sm-5 col-md-4"></div>
+				</c:when>
+				<c:otherwise>
+					<div class="col-sm-5 col-md-4">
+						<h3>예약하기</h3>
+						<form action="#" method="post" class="wowload fadeInRight">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="예약자 성명" value="${sessionScope.c.c_id }">
+								<input type="hidden" class="insertSchedule" value="${sessionScope.c.c_id }" />
+							</div>
+
+							<div class="form-group">
+								<input type="Phone" class="form-control" placeholder="휴대폰 번호" value="${sessionScope.c.c_tel }">
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-xs-6">
+										<select class="form-control insertSchedule">
+											<c:forEach var="rl" items="${roomList }">
+												<option value="${rl.r_id }">${rl.r_name }</option>
+											</c:forEach>
+										</select>
+									</div>
+									<div class="col-xs-6">
+										<select class="form-control">
+											<option>인원수</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="ui left icon input">
+									<input type="date" id="firstday" size="9"
+										onKeyPress="addDash(this)" maxlength="10"> 입실날짜
+								</div>
+								<div class="ui left icon input">
+									<input type="date" id="Lastday" size="9"
+										onKeyPress="addDash(this)" maxlength="10"> 퇴실날짜
+								</div>
+								<button class="btn btn-default">확인</button>
+							</div>
+						</form>
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
   </div>
 </div>
 <div class="spacer services wowload fadeInUp">

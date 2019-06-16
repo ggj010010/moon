@@ -71,7 +71,7 @@ public class BoardController {
 		CustomerDTO c = (CustomerDTO) session.getAttribute("c");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("board/view");
-		//mav.addObject("count", replyService.count(bno)); 
+		mav.addObject("count", replyService.count(bno)); 
 		mav.addObject("dto", BoardService.read(bno));
 		mav.addObject("curPage", curPage);
 		mav.addObject("searchOption", searchOption);

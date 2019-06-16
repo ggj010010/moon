@@ -46,7 +46,7 @@
         ,#{bno}
         ,#{replytext}
         ,#{replyer}
-        ,#{secretreply}
+        ,#{secretReply}
    
    )
    </insert>
@@ -58,20 +58,17 @@
 			WHERE  r.replyer = m.user_id AND bno=#{bno}
 			ORDER BY rno -->
 			SELECT
-			  r.rno, bno, r.replytext, r.replyer, r.secret_reply AS secretReply, r.regdate, r.updatedate,
-			  m.user_name AS userName,
-			  (SELECT writer FROM tbl_board WHERE bno = r.bno) AS writer
-			FROM tbl_reply r, tbl_member m
+			  rno, replytext,replyer, secret_reply , updatedate
+			FROM tbl_reply 
 			WHERE
-			  r.replyer = m.user_id
-			  AND bno = #{bno}
-			ORDER BY rno
+			  bno = #{bno}
+			ORDER BY rno desc
 		<include refid="pagingFooter"/>
 	</select>
 	
 	<!-- 3. 댓글 상세보기 -->
 	<select id="detailReply" resultMap="ReplyVO">
-		SELECT rno, bno, replytext, replyer, regdate, updatedate, secret_reply AS secretReply FROM tbl_reply
+		SELECT rno, bno, replytext, replyer, updatedate, secret_reply AS secretReply FROM tbl_reply
 		WHERE rno = #{rno}
 	</select>
 	

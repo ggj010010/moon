@@ -135,12 +135,11 @@
 		// 1. 댓글 입력
 		$("#btnReply").click(function(){
 			//reply(); // 폼데이터 형식으로 입력
-			alert("asd");
 			reply(); // json 형식으로 입력
 		});
 		
 		// 2. 댓글 목록
-		//listReply("1"); // 댓글 목록 불러오기
+		listReply("1"); // 댓글 목록 불러오기
 		//listReply2(); // json 리턴방식
 		/* listReplyRest("1"); // rest방식 */
 		
@@ -173,11 +172,11 @@
 	// 1_1. 댓글 입력 함수(폼 데이터 방식)
 	   
 	function reply(){
-		alert("mm");
+		
 		 var json = {
 				 
 				 replytext:$("#replytext").val(),
-				 bno:${dto.b_id},
+				 bno:"${dto.b_id}",
 					// 비밀댓글 체크여부
 				 secretReply : "n"
 					// 태그.is(":속성") 체크여부 true/false
@@ -187,14 +186,15 @@
 		//var param="replytext="+replytext+"&bno="+bno+"&secretReply="+secretReply;
 		$.ajax({				
 			type: "post",
-			url: "/reply/insert",
+			url: "${path}/reply/insert",
 			data: json,
 			success: function(){
 				alert("댓글이 등록되었습니다.");
 				//listReply2();
-				listReply("1");
+				
 			}
 		});
+		listReply("1");
 	}
 	
 	// 1_2. 댓글 입력 함수(json방식)
@@ -202,7 +202,7 @@
 	function replyJson(){
 		 var json = {
 				 //$("#c_id").val(),
-				 replytext:$j("#replytext").val(),
+				 replytext:$("#replytext").val(),
 				 bno:"${dto.b_id}",
 					// 비밀댓글 체크여부
 				 secretReply : "n"
@@ -243,7 +243,7 @@
 		$.ajax({
 			type: "get",
 			//contentType: "application/json", ==> 생략가능(RestController이기때문에 가능)
-			url: "${path}/reply/listJson?b_id=${dto.b_id}",
+			url: "${path}/reply/listJson?bno=${dto.b_id}",
 			success: function(result){
 				console.log(result);
 				var output = "<table>";
@@ -400,6 +400,7 @@
 		</c:otherwise>
 	</c:choose>
 	<!-- 댓글 목록 영역 -->
+
 	<div id="listReply"></div>
 	<!-- 댓글 목록 영역 -->
 

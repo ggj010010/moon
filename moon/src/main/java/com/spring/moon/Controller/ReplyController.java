@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.moon.dto.ReplyPager;
@@ -32,6 +31,7 @@ import com.spring.moon.service.ReplyService;
 // @Controller, @RestController ì°¨ì´? ?? ë©”ì„œ?“œê°? ì¢…ë£Œ?˜ë©? ?™”ë©´ì „?™˜?˜ ?œ ë¬?
 
 @Controller
+
 @RequestMapping("/reply/*")
 public class ReplyController {
 	
@@ -40,13 +40,13 @@ public class ReplyController {
 	
 	// 1_1. ?Œ“ê¸? ?…? ¥(@Controllerë°©ì‹?œ¼ë¡? ?Œ“ê¸? ?…? ¥)
 	@RequestMapping(value="insert", method=RequestMethod.POST)
-	public String insert(@ModelAttribute ReplyVO vo, HttpSession session){
+	public void insert(@ModelAttribute ReplyVO vo, HttpSession session){
 		// ?„¸?…˜?— ???¥?œ ?šŒ?›?•„?´?””ë¥? ?Œ“ê¸??‘?„±??— ?„¸?Œ…
 		String userId = (String) session.getAttribute("c_id");
 		vo.setReplyer(userId);
 		// ?Œ“ê¸? ?…? ¥ ë©”ì„œ?“œ ?˜¸ì¶?
 		replyService.create(vo);
-		return "redirect:/board/view";
+		
 	}
 	
 	// 1_2. ?Œ“ê¸??…? ¥ (@RestControllerë°©ì‹?œ¼ë¡? json? „?‹¬?•˜?—¬ ?Œ“ê¸??…? ¥)
@@ -57,19 +57,14 @@ public class ReplyController {
 	public ResponseEntity<String> insertRest(@RequestBody ReplyVO vo, HttpSession session){
 		ResponseEntity<String> entity = null;
 		try {
-			// ?„¸?…˜?— ???¥?œ ?šŒ?›?•„?´?””ë¥? ?Œ“ê¸??‘?„±??— ?„¸?Œ…
 			String userId = (String) session.getAttribute("c_id");
 			vo.setReplyer(userId);
-			// ?Œ“ê¸??…? ¥ ë©”ì„œ?“œ ?˜¸ì¶?
 			replyService.create(vo);
-			// ?Œ“ê¸??…? ¥?´ ?„±ê³µí•˜ë©? ?„±ê³µë©”?‹œì§? ???¥
 			entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			// ?Œ“ê¸??…? ¥?´ ?‹¤?Œ¨?•˜ë©? ?‹¤?Œ¨ë©”ì‹œì§? ???¥
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-		// ?…? ¥ ì²˜ë¦¬ HTTP ?ƒ?ƒœ ë©”ì‹œì§? ë¦¬í„´
 		return entity;
 	}
 	
@@ -151,7 +146,7 @@ public class ReplyController {
 	
 	// 4. ?Œ“ê¸? ?ˆ˜? • ì²˜ë¦¬ - PUT:? „ì²? ?ˆ˜? •, PATCH:?¼ë¶??ˆ˜? •
 	// RequestMethodë¥? ?—¬?Ÿ¬ ë°©ì‹?œ¼ë¡? ?„¤? •?•  ê²½ìš° {}?•ˆ?— ?‘?„±
-	@RequestMapping(value="/update/{rno}", method=RequestMethod.GET)
+	@RequestMapping(value="/update/{rno}", method={RequestMethod.POST})
 	public ResponseEntity<String> replyUpdate(@PathVariable("rno") Integer rno, @RequestBody ReplyVO vo){
 		ResponseEntity<String> entity = null;
 		try {

@@ -13,7 +13,7 @@
 	$("#btnReplyUpdate").click(function(){
 		var detailReplytext = $("#detailReplytext").val();
 		$.ajax({
-			type: "put",
+			type: "post",
 			url: "${path}/reply/update/${vo.rno}",
 			// 기본값 text/html을 json으로 변경
 			headers: {
@@ -43,7 +43,7 @@
 	$("#btnReplyDelete").click(function(){
 		if(confirm("삭제하시겠습니까?")){
 			$.ajax({
-				type: "delete",
+				type: "post",
 				url: "${path}/reply/delete/${vo.rno}",
 				success: function(result){
 					if(result == "success"){

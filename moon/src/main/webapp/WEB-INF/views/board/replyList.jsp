@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,13 +19,14 @@
 		<c:forEach var="row" items="${list}">
 		<tr>	
 			<td>
-				${row.userName}(<fmt:formatDate value="${row.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/>)
+				${row.updatedate }
 				<br>
 				${row.replytext}
 				<br>
 				<!-- 본인 댓글만 수정버튼 생성되도록 처리 -->
-				<c:if test="${sessionScope.userId == row.replyer}">
+				<c:if test="${sessionScope.c_id == row.replyer}">
 					<input type="button" id="btnModify" value="수정" onclick="showReplyModify('${row.rno}')">
+
 				</c:if>
 				<hr>
 			</td>

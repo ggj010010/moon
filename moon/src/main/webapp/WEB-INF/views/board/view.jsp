@@ -62,12 +62,12 @@
 		// 2. 게시글 삭제
 		$("#btnDelete").click(function(){
 			// 댓글이 존재하는 게시물의 삭제처리 방지
-			/* var count = "${count}";
+			 var count = ${count};
 			if(count > 0) {
-				alert("댓글이 있는 게시물은 삭제할 수 없습니다.")
+				alert("댓글이 있는 게시물은 삭제할 수 없습니다.");
 				return;
-			} */
-			if(confirm("삭제하시겠습니까?")){
+			}  
+			else if(confirm("삭제하시겠습니까?")){
 				document.form1.action = "/board/delete";
 				document.form1.submit();
 			}

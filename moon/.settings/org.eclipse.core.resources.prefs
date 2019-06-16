@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/spring/moon/Controller/BoardController.java=UTF-8
+encoding//src/main/java/com/spring/moon/dto/BoardPager.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/board/test2.jsp=UTF-8
 encoding//src/main/webapp/resources/js/semantic.min.css=UTF-8

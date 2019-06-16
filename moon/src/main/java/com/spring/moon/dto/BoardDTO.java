@@ -9,6 +9,8 @@ public class BoardDTO {
 	String b_title;
 	String b_content;
 	Date b_date;
+	int viewcnt;
+	String show;
 	
 	public int getB_id() {
 		return b_id;
@@ -45,6 +47,18 @@ public class BoardDTO {
 	}
 	public void setB_date(Date b_date) {
 		this.b_date = b_date;
+	}
+	public int getViewcnt() {
+		return viewcnt;
+	}
+	public void setViewcnt(int viewcnt) {
+		this.viewcnt = viewcnt;
+	}
+	public String getShow() {
+		return show;
+	}
+	public void setShow(String show) {
+		this.show = show;
 	}
 	
 	

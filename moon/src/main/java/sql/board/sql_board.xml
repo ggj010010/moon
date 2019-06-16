@@ -1,42 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- 	int b_id;
-	int br_id;
-	String bc_id;
-	String b_title;
-	String b_content;
-	Date b_date; -->
-	
 <mapper namespace="board">
-	<resultMap type="com.spring.moon.dto.BoardDTO"
-		id="BoardDTO">
+	<resultMap type="com.spring.moon.dto.BoardDTO" id="BoardDTO">
 		<result property="b_id" column="board_no" />
 		<result property="br_id" column="room_id" />
 		<result property="bc_id" column="cust_id" />
 		<result property="b_title" column="board_title" />
 		<result property="b_content" column="board_content" />
 		<result property="b_date" column="board_date" />
+		<result property="show" column="show" />
+		<result property="viewcnt" column="viewcnt" />
 	</resultMap>
-	<insert id='write_bbs'>
-		<selectKey keyProperty="e_id" resultType="Integer" order="BEFORE"> 
-		SELECT 
-			nvl(TO_NUMBER(MAX(board_no)+1),0)
-		FROM
+
+	<!-- <select id = "get_bbs" resultType="BoardDTO"> select b.*, (select u_id 
+		from user u where u.u_no = b.b_owner) b_ownernick from bbs b where b.b_no 
+		= #{b_no} </select> -->
+	<select id="countArticle" resultType="int">
+		SELECT COUNT(*) 
+		FROM 
 			board
-		</selectKey>
-		INSERT INTO board 
-		VALUES ((SELECT NVL(MAX(board_no)+1,1) FROM board), #{br_id}, #{bc_id}, #{b_title},#{b_content}, sysdate)
-	</insert>
-	
-	<select id="bbs_all" resultMap="BoardDTO">
-		SELECT *
-		FROM board
+		<!-- WHERE절을 include 태그로 삽입 -->
+		<!-- <include refid="search"></include> -->
+	</select>
+	<select id="listAll" resultMap="BoardDTO">
+		
+
+		<!-- 03. 페이지 나누기를 포함한 게시글 목록 -->
+		<!-- 페이징 -->
+		<include refid="pagingHeader"></include>
+			SELECT 
+				ROWNUM, board_no, board_title, board_content, board_date, cust_id 
+				
+			FROM 
+				board
+			<!-- 검색조건 -->
+			<!-- <include refid="search"></include> -->
+			ORDER BY board_no DESC, board_date DESC 
+		<!-- 페이징 -->
+		<include refid="pagingFooter"></include>	
 	</select>
 	
-<!-- 	<select id = "get_bbs" resultType="BoardDTO">
-		select b.*, (select u_id from user u where u.u_no = b.b_owner) b_ownernick from bbs b where b.b_no = #{b_no}
-	</select> -->
 
+	<!-- <sql id="search">
+		<choose>
+			검색옵션이 전체 검색일 경우
+			<when test="searchOption == 'all'">
+				WHERE 
+					(cust_id like '%'||#{keyword}||'%'
+				OR 
+					board_content '%'||#{keyword}||'%'
+				OR 
+					board_title like '%'||#{keyword}||'%')
+			</when>
+			전체 검색이 아닐 경우
+			<otherwise>
+					${searchOption} like '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+	</sql> -->
+	
+	<!-- 페이징 sql -->
+	<sql id="pagingHeader">
+		SELECT * FROM (
+			SELECT ROWNUM AS rn, A.* FROM (
+	</sql>
+	<sql id="pagingFooter">
+			) A
+		) WHERE rn BETWEEN #{start} AND #{end}
+	</sql>
+<!-- 		board_no, board_title, board_content, board_date, cust_id  -->
+	<insert id="insert">
+		<!-- 게시글 번호를 시퀀스로 생성 -->
+		INSERT INTO board (
+		  board_no, board_title, board_content, viewcnt, cust_id, show, board_date
+		) VALUES (
+		   (SELECT NVL(MAX(board_no)+1, 1)FROM board), #{b_title}, #{b_content}, 0, #{bc_id}, 'y', sysdate
+		)
+		<!-- 게시글 번호를 서브쿼리로 생성 -->
+		<!-- INSERT INTO tbl_board (
+		  bno, title, content, writer, show
+		) VALUES (
+		  (SELECT NVL(MAX(bno)+1, 1)FROM tbl_board), #{title}, #{content}, #{writer}, 'y'
+		) -->
+	</insert>
+	
+	<!--03. 게시글 상세보기 조회 -->
+	<select id="view" resultMap="BoardDTO">
+		<!-- SELECT * FROM tbl_board  -->
+		SELECT 
+			board_no, board_title, board_content, viewcnt, cust_id, board_date,  show
+		FROM 
+			board b
+		WHERE
+			board_no = #{bno}
+	</select>
+	
+	<!-- 04. 게시글 조회수 증가처리 -->
+	<update id="increaseViewcnt">
+		UPDATE 
+			board 
+		SET 
+			viewcnt = viewcnt + 1 
+		WHERE 
+			board_no = #{bno}
+	</update>
+	
+	<!-- 05. 게시글 수정처리 -->
+	<update id="updateArticle">
+		UPDATE 
+			board 
+		SET
+			board_title = #{b_title},
+			board_content = #{b_content}
+			<!-- writer = #{writer} -->
+		WHERE 
+			board_no = #{b_id}
+	</update>
+	
+	<!-- 06. 게시글 삭제처리 -->
+	<!-- 게시물을 삭제처리하지 않고, 삭제의 유무 상태만 변경 -->
+	<update id="deleteArticle">
+		DELETE
+		FROM
+			board
+		WHERE 
+			board_no = #{b_id}
+	</update>
+	<!-- <delete id="deleteArticle">
+		DELETE FROM tbl_board
+		WHERE bno = #{bno}
+	</delete> -->
+	<!-- sql code 조각 -->
+	<!-- 반복되는 sql의 일부를 sql태그를 이용하여 따로 빼둘수 있다. -->
+	<!-- 검색 조건 sql -->
+<!-- 	<select id="boardView" parameterType="BoardDTO" resultMap="BoardDTO">
+    	SELECT
+        	
+			BOARD_id
+			,BOARD_TITLE
+			,BOARD_COMMENT
+		FROM
+			BOARD
+    	WHERE 	BOARD_NUM  = #{boardNum}
+    </select> -->	
+    
 
 </mapper>

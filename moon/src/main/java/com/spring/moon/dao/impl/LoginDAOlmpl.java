@@ -53,6 +53,8 @@ public class LoginDAOlmpl implements LoginDAO{
 		
 		try {
 			CustomerDTO c_info = sqlSession.selectOne("login.Login_Info", customerDTO);
+			String customer_id = sqlSession.selectOne("CustomerID", customerDTO);
+			Hsession.setAttribute("c_id", customer_id);
 			Hsession.setAttribute("c", c_info);
 			return 1;
 		}

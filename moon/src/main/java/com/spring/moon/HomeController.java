@@ -46,10 +46,10 @@ public class HomeController {
 		
 		return "index";
 	}
-	@RequestMapping(value = "/locate")
-	public String locate(Model model) throws Exception {
+	@RequestMapping(value = "/check")
+	public String check(Model model) throws Exception {
 
-		return "locate";
+		return "check";
 	}
 	@RequestMapping(value = "/room")
 	public String room(Model model,PagingDTO pagingDTO) throws Exception {
@@ -74,10 +74,10 @@ public class HomeController {
 		
 		return "roomdetail";
 	}
-	@RequestMapping(value = "/report")
-	public String report(Model model) throws Exception {
+	@RequestMapping(value = "/locate")
+	public String locate(Model model) throws Exception {
 
-		return "report";
+		return "locate";
 	}
 	
 }

@@ -59,24 +59,25 @@
    <div class="row">
 		<div class="col-sm-6 col-sm-offset-3">
 			<div class="spacer">   		
-
-       		<h4>Report to us</h4>
-			<form role="form">
-			<div class="form-group">	
-			<input type="text" class="form-control" id="name" placeholder="이름">
-			</div>
-			<div class="form-group">
-			<input type="email" class="form-control" id="email" placeholder="e-mail">
-			</div>
-			<div class="form-group">
-			<input type="phone" class="form-control" id="phone" placeholder="휴대폰">
-			</div>
-			<div class="form-group">
-			<textarea type="email" class="form-control"  placeholder="문의사항을 적어주세요." rows="4"></textarea>
-			</div>
-					
-			<button type="submit" class="btn btn-default">보내기</button>
-			</form>
+<h1 class="title">예약 확인</h1>
+       		  <table border="1" width="100%",height="200%">
+    <th>이름</th>
+    <th>방번호</th>
+	<th>입소일</th>
+	<th>퇴소일</th>
+	<tr>
+		<td>1</td>
+	    <td>1</td>
+	    <td>1</td>
+	    <td>2</td>
+	</tr><!-- 첫번째 줄 끝 -->
+	<tr><!-- 두번째 줄 시작 -->
+		<td>1</td>
+	    <td>1</td>
+	    <td>1</td>
+	    <td>2</td>
+	</tr><!-- 두번째 줄 끝 -->
+    </table>
 			</div>
 
 
@@ -108,16 +109,10 @@
         <ul class="list-unstyled">
           <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
           <li><a href="http://localhost:8181/locate">호텔소개</a></li>
-          <li><a href="http://localhost:8181/report">문의하기</a></li>
+                <li><a href="http://localhost:8181/check">예약확인</a></li>
         </ul>
       </div>
-      <div class="col-sm-4 subscribe">
-        <h4>Check Reservation</h4>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="ID를 입력해주세요">
-          <span class="input-group-btn">
-          <button class="btn btn-default" type="button">예약 확인</button>
-          </span></div>
+     
         <div class="social"><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-facebook-square" data-toggle="tooltip" data-placement="top" data-original-title="facebook"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-instagram"  data-toggle="tooltip" data-placement="top" data-original-title="instragram"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-twitter-square" data-toggle="tooltip" data-placement="top" data-original-title="twitter"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-pinterest-square" data-toggle="tooltip" data-placement="top" data-original-title="pinterest"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-tumblr-square" data-toggle="tooltip" data-placement="top" data-original-title="tumblr"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-youtube-square" data-toggle="tooltip" data-placement="top" data-original-title="youtube"></i></a></div>
       </div>
     </div>

@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.moon.dto.PagingDTO;
 import com.spring.moon.dto.RoomDTO;
+import com.spring.moon.dto.ScheduleDTO;
 import com.spring.moon.service.RoomService;
+import com.spring.moon.service.ScheduleService;
 
 /**
  * Handles requests for the application home page.
@@ -26,6 +31,8 @@ public class HomeController {
 	
 	@Autowired
 	RoomService roomService;
+	@Autowired
+	ScheduleService scheduleService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -47,9 +54,16 @@ public class HomeController {
 		return "index";
 	}
 	@RequestMapping(value = "/check")
-	public String check(Model model) throws Exception {
-
-		return "check";
+	public String check(Model model,ScheduleDTO scheduleDTO,HttpSession session) throws Exception {
+		if(session.getAttribute("c_id").equals(scheduleDTO.getC_id())) {
+			logger.info("c_id : " + scheduleDTO.getC_id());
+			List<ScheduleDTO> sd = new ArrayList<ScheduleDTO>();
+			sd = scheduleService.selectScheduleList(scheduleDTO);
+			logger.info("sd : " + sd + " size : " + sd.size());
+			model.addAttribute("scheduleList",sd);
+		}
+		
+		return "/check";
 	}
 	@RequestMapping(value = "/room")
 	public String room(Model model,PagingDTO pagingDTO) throws Exception {

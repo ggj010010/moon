@@ -12,4 +12,6 @@ public interface ScheduleService {
 
 	int insertSchedule(ScheduleDTO scheduleDTO);
 
+	List<ScheduleDTO> selectScheduleList(ScheduleDTO scheduleDTO);
+
 }

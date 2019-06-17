@@ -50,6 +50,29 @@
 
 	</select>
 	
+	<select id="selectScheduleList" parameterType="com.spring.moon.dto.ScheduleDTO" resultMap="ScheduleDTO">
+		/*schedule.selectScheduleList*/
+		select
+			sd_id
+			,s.cust_id
+			,c.cust_name
+			,c.cust_tel
+			,r.room_name
+			,check_in
+			,check_out
+		from
+			schedule s
+			,customer c
+			,room r
+		where
+			s.cust_id = #{c_id, jdbcType=VARCHAR}
+			and
+			s.cust_id = c.cust_id
+			and
+			s.room_id = r.room_id
+
+	</select>
+	
 	<insert id="insertSchedule" parameterType="com.spring.moon.dto.ScheduleDTO">
 	/*schedule.insertSchedule*/
 	<selectKey keyProperty="s_id" resultType="Integer" order="BEFORE"> 

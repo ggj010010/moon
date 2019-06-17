@@ -12,4 +12,6 @@ public interface ScheduleDAO {
 
 	int insertSchedule(ScheduleDTO scheduleDTO);
 
+	List<ScheduleDTO> selectScheduleList(ScheduleDTO scheduleDTO);
+
 }

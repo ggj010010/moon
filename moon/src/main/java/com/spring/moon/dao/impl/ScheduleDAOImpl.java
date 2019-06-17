@@ -22,6 +22,12 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 	}
 	
 	@Override
+	public List<ScheduleDTO> selectScheduleList(ScheduleDTO scheduleDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("schedule.selectScheduleList",scheduleDTO);
+	}
+	
+	@Override
 	public int insertSchedule(ScheduleDTO scheduleDTO) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("schedule.insertSchedule", scheduleDTO);

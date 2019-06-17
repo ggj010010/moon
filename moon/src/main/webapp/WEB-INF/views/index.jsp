@@ -81,7 +81,7 @@ $j(document).ready(function() {
 
         	    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
        		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
-                <li><a href="http://localhost:8181/check">예약확인</a></li>
+                <li><a href="http://localhost:8181/check?c_id=${sessionScope.c.c_id }">예약확인</a></li>
                 <li><a href="/board/test2">게시판</a></li>
         		<li><a>${sessionScope.c.c_id}님</a></li>
         		<li><a href="/logout">로그아웃</a></li>

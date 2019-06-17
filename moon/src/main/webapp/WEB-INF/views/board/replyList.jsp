@@ -21,7 +21,7 @@
 			<td>
 				${row.updatedate }
 				<br>
-				${row.replytext}
+				${row.replyer}님-${row.replytext}
 				<br>
 				<!-- 본인 댓글만 수정버튼 생성되도록 처리 -->
 				<c:if test="${sessionScope.c_id == row.replyer}">

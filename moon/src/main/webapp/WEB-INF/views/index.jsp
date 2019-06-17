@@ -77,7 +77,8 @@ $j(document).ready(function() {
        		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
         		<li><a href="http://localhost:8181/login/login">로그인</a></li>
         	</c:when>
-        	<c:otherwise>
+        	<c:otherwise> 
+
         	    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
        		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
                 <li><a href="http://localhost:8181/check">예약확인</a></li>
@@ -198,9 +199,19 @@ $j(document).ready(function() {
       <div class="col-sm-3">
         <h4>Quick Menual</h4>
         <ul class="list-unstyled">
-          <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
-          <li><a href="http://localhost:8181/locate">호텔소개</a></li>
-          <li><a href="http://localhost:8181/report">문의하기</a></li>
+	<c:choose>
+      		<c:when test="${sessionScope.c.c_id == null}">
+      		    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
+       		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
+        	</c:when>
+        	<c:otherwise> 
+
+        	    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
+       		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
+                <li><a href="http://localhost:8181/check">예약확인</a></li>
+                <li><a href="/board/test2">게시판</a></li>
+        	</c:otherwise>
+        </c:choose>
         </ul>
       </div>
       <div class="col-sm-4 subscribe">

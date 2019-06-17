@@ -39,10 +39,22 @@
       <a class="navbar-brand" href="http://localhost:8181"><img src="assets/images/logo.png" alt="website template image"></a></div>
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-       		    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
+	<c:choose>
+      		<c:when test="${sessionScope.c.c_id == null}">
+      		    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
        		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
-                <li><a href="http://localhost:8181/report">문의하기</a></li>
         		<li><a href="http://localhost:8181/login/login">로그인</a></li>
+        	</c:when>
+        	<c:otherwise> 
+
+        	    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
+       		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
+                <li><a href="http://localhost:8181/check">예약확인</a></li>
+                <li><a href="/board/test2">게시판</a></li>
+        		<li><a>${sessionScope.c.c_id}님</a></li>
+        		<li><a href="/logout">로그아웃</a></li>
+        	</c:otherwise>
+        </c:choose>
       </ul>
     </div>
   </div>
@@ -102,9 +114,19 @@
       <div class="col-sm-3">
         <h4>Quick Manual</h4>
         <ul class="list-unstyled">
-          <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
-          <li><a href="http://localhost:8181/locate">호텔소개</a></li>
+	<c:choose>
+      		<c:when test="${sessionScope.c.c_id == null}">
+      		    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
+       		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
+        	</c:when>
+        	<c:otherwise> 
+
+        	    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
+       		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
                 <li><a href="http://localhost:8181/check">예약확인</a></li>
+                <li><a href="/board/test2">게시판</a></li>
+        	</c:otherwise>
+        </c:choose>
         </ul>
       </div>
      

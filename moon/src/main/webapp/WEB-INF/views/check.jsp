@@ -78,6 +78,7 @@
 						<c:when test="${sessionScope.c.c_id == null}">
 							<li><a href="http://localhost:8181/room">방 둘러보기</a></li>
 							<li><a href="http://localhost:8181/locate">호텔소개</a></li>
+							<li><a href="/board/test2">게시판</a></li>
 							<li><a href="http://localhost:8181/login/login">로그인</a></li>
 						</c:when>
 						<c:otherwise>
@@ -142,32 +143,41 @@
 
 
 	</div>
-	<footer class="spacer">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-5">
-					<h4>Company Moon</h4>
-					<p>Hotel Moon을 통한 호텔사업을 기반으로 성장하였으며 요식업, 건축업 등 다양한 분야에 도전하고
-						있습니다.</p>
-				</div>
-				<div class="col-sm-3">
-					<h4>Quick Manual</h4>
-					<ul class="list-unstyled">
-						<c:choose>
-							<c:when test="${sessionScope.c.c_id == null}">
-								<li><a href="http://localhost:8181/room">방 둘러보기</a></li>
-								<li><a href="http://localhost:8181/locate">호텔소개</a></li>
-							</c:when>
-							<c:otherwise>
+<footer class="spacer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5">
+        <h4>Company Moon</h4>
+        <p>Hotel Moon을 통한 호텔사업을 기반으로 성장하였으며
+        요식업, 건축업 등 <br>다양한 분야에 도전하고 있습니다.</p>
+      </div>
+      <div class="col-sm-3">
+        <ul class="list-unstyled">
+	
+        </ul>
+      </div>
+     
+     <div class="col-sm-4 subscribe">
+                    <div class="input-group">
+                        <h4>Quick Manual</h4>
+        <ul class="list-unstyled">
+	<c:choose>
+      		<c:when test="${sessionScope.c.c_id == null}">
+      		    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
+       		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
+       		    <li><a href="/board/test2">게시판</a></li>
+        	</c:when>
+        	<c:otherwise> 
 
-								<li><a href="http://localhost:8181/room">방 둘러보기</a></li>
-								<li><a href="http://localhost:8181/locate">호텔소개</a></li>
-								<li><a href="http://localhost:8181/check">예약확인</a></li>
-								<li><a href="/board/test2">게시판</a></li>
-							</c:otherwise>
-						</c:choose>
-					</ul>
-				</div>
+        	    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
+       		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
+                <li><a href="http://localhost:8181/check">예약확인</a></li>
+                <li><a href="/board/test2">게시판</a></li>
+        	</c:otherwise>
+        </c:choose>
+        </ul>
+                    </div>
+     
 
 				<div class="social">
 					<a href="https://www.free-css.com/free-css-templates"><i

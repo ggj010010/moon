@@ -43,6 +43,7 @@
       		<c:when test="${sessionScope.c.c_id == null}">
       		    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
        		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
+       		    <li><a href="/board/test2">게시판</a></li>
         		<li><a href="http://localhost:8181/login/login">로그인</a></li>
         	</c:when>
         	<c:otherwise> 
@@ -125,6 +126,7 @@
       		<c:when test="${sessionScope.c.c_id == null}">
       		    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
        		    <li><a href="http://localhost:8181/locate">호텔소개</a></li>
+       		    <li><a href="/board/test2">게시판</a></li>
         	</c:when>
         	<c:otherwise> 
 

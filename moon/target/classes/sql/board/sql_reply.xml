@@ -84,7 +84,10 @@
 		DELETE FROM tbl_reply
 		WHERE rno = #{rno}
 	</delete>
-	
+	<delete id="reply_deleteReply">
+		DELETE FROM tbl_reply
+		WHERE bno = #{bno}
+	</delete>
 	<!-- 6 .댓글 갯수(for 페이징처리) -->
 	<select id="countReply" resultType="int">
 		SELECT COUNT(*) FROM tbl_reply WHERE bno=#{bno}

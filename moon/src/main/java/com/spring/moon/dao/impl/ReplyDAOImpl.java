@@ -46,6 +46,10 @@ public class ReplyDAOImpl implements ReplyDAO {
 	public void delete(Integer rno) {
 		sqlSession.delete("reply.deleteReply", rno);
 	}
+	@Override
+	public int reply_delete(ReplyVO vo) {
+		return sqlSession.delete("reply.reply_deleteReply", vo);
+	}
 	// 6. ?Œ“ê¸? ê°??ˆ˜
 	@Override
 	public int count(Integer bno) {

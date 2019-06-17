@@ -17,6 +17,8 @@ public interface ReplyService {
 	public void update(ReplyVO vo);
 	// 5. ?Œ“ê¸? ?‚­? œ
 	public void delete(Integer rno);
+	
+	public int reply_delete(ReplyVO vo);
 	// 6. ?Œ“ê¸? ê°??ˆ˜
 	public int count(Integer bno);
 }

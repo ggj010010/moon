@@ -65,4 +65,9 @@ public class ReplyServiceImpl implements ReplyService {
 	public int count(Integer bno) {
 		return replyDao.count(bno);
 	}
+	@Override
+	public int reply_delete(ReplyVO vo) {
+		// TODO Auto-generated method stub
+		return replyDao.reply_delete(vo);
+	}
 }

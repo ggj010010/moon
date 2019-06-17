@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.moon.dto.BoardDTO;
 import com.spring.moon.dto.BoardPager;
 import com.spring.moon.dto.CustomerDTO;
+import com.spring.moon.dto.ReplyVO;
 import com.spring.moon.service.BoardService;
 import com.spring.moon.service.ReplyService;
 
@@ -41,12 +43,10 @@ public class BoardController {
 	 * if (c == null) return "redirect:/"; return "write_bbs"; }
 	 */
 
-
-
 	@RequestMapping("/board/test2")
-	public ModelAndView list(@RequestParam(defaultValue="board_title") String searchOption,
-							@RequestParam(defaultValue="") String keyword,
-							@RequestParam(defaultValue="1") int curPage) throws Exception{
+	public ModelAndView list(@RequestParam(defaultValue = "board_title") String searchOption,
+			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int curPage)
+			throws Exception {
 		int count = BoardService.countArticle(searchOption, keyword);
 		BoardPager boardPager = new BoardPager(count, curPage);
 		int start = boardPager.getPageBegin();
@@ -64,14 +64,14 @@ public class BoardController {
 		return mav; // list.jsp濡� List媛� �쟾�떖�맂�떎.
 	}
 
-	@RequestMapping(value="/board/view", method=RequestMethod.GET)
+	@RequestMapping(value = "/board/view", method = RequestMethod.GET)
 	public ModelAndView view(@RequestParam int bno, @RequestParam int curPage, @RequestParam String searchOption,
-							@RequestParam String keyword, HttpSession session) throws Exception{
+			@RequestParam String keyword, HttpSession session) throws Exception {
 		BoardService.increaseViewcnt(bno, session);
 		CustomerDTO c = (CustomerDTO) session.getAttribute("c");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("board/view");
-		mav.addObject("count", replyService.count(bno)); 
+		mav.addObject("count", replyService.count(bno));
 		mav.addObject("dto", BoardService.read(bno));
 		mav.addObject("curPage", curPage);
 		mav.addObject("searchOption", searchOption);
@@ -79,8 +79,9 @@ public class BoardController {
 		logger.info("mav:", mav);
 		return mav;
 	}
-	@RequestMapping(value="board/insert", method=RequestMethod.POST)
-	public String insert(@ModelAttribute BoardDTO vo, HttpSession session) throws Exception{
+
+	@RequestMapping(value = "board/insert", method = RequestMethod.POST)
+	public String insert(@ModelAttribute BoardDTO vo, HttpSession session) throws Exception {
 		// session�뿉 ���옣�맂 userId瑜� writer�뿉 ���옣
 		String writer = (String) session.getAttribute("c_id");
 		// vo�뿉 writer瑜� �꽭�똿
@@ -88,27 +89,39 @@ public class BoardController {
 		BoardService.create(vo);
 		return "redirect:/board/test2";
 	}
-	
-	@RequestMapping(value="/board/update", method=RequestMethod.GET)
-	public String update(@ModelAttribute BoardDTO vo) throws Exception{
+
+	@RequestMapping(value = "/board/update", method = RequestMethod.GET)
+	public String update(@ModelAttribute BoardDTO vo) throws Exception {
 		BoardService.update(vo);
 		return "redirect:/board/test2";
 	}
-	
 
-	@RequestMapping(value="/board/delete", method=RequestMethod.GET)
-	public String delete(@ModelAttribute BoardDTO vo) throws Exception{
-		BoardService.delete(vo);
+	@RequestMapping(value = "/board/delete", method = RequestMethod.GET)
+	public String delete(@ModelAttribute BoardDTO to, @ModelAttribute ReplyVO vo, HttpServletRequest hr) throws Exception {
+		logger.info(""+hr.getParameter("rcount"));
+		
+		
+		if (Integer.parseInt(hr.getParameter("rcount")) > 0) {
+			int replyResult = replyService.reply_delete(vo);
+			if (replyResult > 0) {
+				BoardService.delete(to);
+			}
+		}else{
+			BoardService.delete(to);
+		}
+
 		return "redirect:/board/test2";
 	}
+
 	@RequestMapping("/getAttach/{bno}")
 	@ResponseBody // view媛� �븘�땶 data瑜� 由ы꽩
-	public List<String> getAttach(@PathVariable("bno") int bno){
+	public List<String> getAttach(@PathVariable("bno") int bno) {
 		return BoardService.getAttach(bno);
 	}
-	@RequestMapping(value="/board/write", method=RequestMethod.GET)
-	public String write(){
+
+	@RequestMapping(value = "/board/write", method = RequestMethod.GET)
+	public String write() {
 		return "board/write"; // write.jsp濡� �씠�룞
 	}
-	
+
 }

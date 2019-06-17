@@ -441,9 +441,13 @@
 					작성일자 : ${dto.b_date}
 					<!-- 날짜 형식 => yyyy 4자리연도, MM 월, dd 일, a 오전/오후, HH 24시간제, hh 12시간제, mm 분, ss 초 -->
 				</div>
-				<div>조회수 : ${dto.viewcnt}</div>
 				<div>
-					제목
+					이름 : 
+					<%-- <input name="writer" id="writer" value="${dto.writer}" placeholder="이름을 입력해주세요"> --%>
+					${dto.bc_id}
+				</div>
+				<div>
+					<br>
 					<c:choose>
 						<c:when test="${sessionScope.c.c_id == dto.bc_id}">
 							<input name="b_title" id="title" size="80" value="${dto.b_title}"
@@ -456,7 +460,9 @@
 					</c:choose>
 				</div>
 				<div>
-					내용
+				<br>
+					
+					<br>
 					<c:choose>
 						<c:when test="${sessionScope.c.c_id == dto.bc_id}">
 							<textarea name="b_content" id="content" rows="4" cols="80"
@@ -468,11 +474,7 @@
 					</c:choose>
 
 				</div>
-				<div>
-					이름
-					<%-- <input name="writer" id="writer" value="${dto.writer}" placeholder="이름을 입력해주세요"> --%>
-					${dto.bc_id}
-				</div>
+				
 				<!-- 첨부파일 목록 -->
 				<!-- <div>
 					첨부파일 
@@ -489,12 +491,15 @@
 						type="hidden" name="rcount" value="${count}">
 					<!-- 본인이 쓴 게시물만 수정, 삭제가 가능하도록 처리 -->
 					<c:if test="${sessionScope.c.c_id == dto.bc_id}">
+						
 						<button type="button" id="btnUpdete">수정</button>
 						<button type="button" id="btnDelete">삭제</button>
+						
 					</c:if>
 					<!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
 					<button type="button" id="btnList">목록</button>
 				</div>
+				<div>조회수 : ${dto.viewcnt}</div>
 			</form>
 			<!-- 게시물 상세보기 영역 -->
 
@@ -503,7 +508,7 @@
 				<br>
 				<!-- 로그인 한 회원에게만 댓글 작성폼이 보이게 처리 -->
 				<c:if test="${sessionScope.c.c_id != null}">
-					<textarea rows="5" cols="80" id="replytext"
+					<textarea rows="2" cols="80" id="replytext"
 						placeholder="댓글을 작성해주세요"></textarea>
 					<br>
 					<!-- 비밀댓글 체크박스 -->

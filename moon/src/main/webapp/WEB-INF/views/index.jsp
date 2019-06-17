@@ -194,10 +194,17 @@ $j(document).ready(function() {
       <div class="col-sm-5">
         <h4>Company Moon</h4>
         <p>Hotel Moon을 통한 호텔사업을 기반으로 성장하였으며
-        요식업, 건축업 등 다양한 분야에 도전하고 있습니다.</p>
+        요식업, 건축업 등 <br>다양한 분야에 도전하고 있습니다.</p>
       </div>
       <div class="col-sm-3">
-        <h4>Quick Menual</h4>
+        <ul class="list-unstyled">
+	
+        </ul>
+      </div>
+     
+     <div class="col-sm-4 subscribe">
+                    <div class="input-group">
+                        <h4>Quick Manual</h4>
         <ul class="list-unstyled">
 	<c:choose>
       		<c:when test="${sessionScope.c.c_id == null}">
@@ -213,10 +220,9 @@ $j(document).ready(function() {
         	</c:otherwise>
         </c:choose>
         </ul>
-      </div>
-      <div class="col-sm-4 subscribe">
-
-
+                    </div>
+     
+     
         <div class="social"><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-facebook-square" data-toggle="tooltip" data-placement="top" data-original-title="facebook"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-instagram"  data-toggle="tooltip" data-placement="top" data-original-title="instragram"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-twitter-square" data-toggle="tooltip" data-placement="top" data-original-title="twitter"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-pinterest-square" data-toggle="tooltip" data-placement="top" data-original-title="pinterest"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-tumblr-square" data-toggle="tooltip" data-placement="top" data-original-title="tumblr"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-youtube-square" data-toggle="tooltip" data-placement="top" data-original-title="youtube"></i></a></div>
       </div>
     </div>

@@ -95,7 +95,7 @@
 </head>
 <body>
 <h2>게시글 작성</h2>
-<form name="form1" id="form1" method="post" action="/board/insert">
+<form name="form1" id="form1" method="get" action="/board/insert">
 	<div>
 		제목
 		<input name="b_title" id="title" size="80" placeholder="제목을 입력해주세요">

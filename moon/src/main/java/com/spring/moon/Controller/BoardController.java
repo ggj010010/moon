@@ -80,7 +80,7 @@ public class BoardController {
 		return mav;
 	}
 
-	@RequestMapping(value = "board/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "board/insert", method = RequestMethod.GET)
 	public String insert(@ModelAttribute BoardDTO vo, HttpSession session) throws Exception {
 		// session�뿉 ���옣�맂 userId瑜� writer�뿉 ���옣
 		String writer = (String) session.getAttribute("c_id");

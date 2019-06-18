@@ -259,6 +259,15 @@
 </head>
 <body>
 <form enctype="multipart/form-data" method="post">
+ 	<table>
+		<tr>
+			<td><input type="button" value="皋牢" onClick="location.href='/manager/managerMain'"></td>
+			<td><input type="button" value="规 包府" onClick="location.href='/room/room'"></td>
+			<td><input type="button" value="捞亥飘 包府" onClick="location.href='/event/event'"></td>
+			<td><input type="button" value="抗距 包府" onClick="location.href='/schedule/schedule'"></td>
+			<td><input type="button" value="绊按 包府" onClick="location.href='/customer/customer'"></td>
+		</tr>
+	</table>
 	<table>
 		<tr>
 			<td><input type="text" name="e_name"

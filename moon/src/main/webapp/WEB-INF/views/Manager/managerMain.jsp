@@ -7,13 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table border="0">
-<a href="/room/room">规 包府</a></br>
-<a href="/event/event">捞亥飘 包府</a></br>
-<a href="/schedule/schedule">抗距 包府</a></br>
-<a href="/customer/customer">绊按 包府</a></br>
-
-
-</table>
+	<table>
+		<tr>
+			<td><input type="button" value="皋牢" onClick="location.href='/manager/managerMain'"></td>
+			<td><input type="button" value="规 包府" onClick="location.href='/room/room'"></td>
+			<td><input type="button" value="捞亥飘 包府" onClick="location.href='/event/event'"></td>
+			<td><input type="button" value="抗距 包府" onClick="location.href='/schedule/schedule'"></td>
+			<td><input type="button" value="绊按 包府" onClick="location.href='/customer/customer'"></td>
+		</tr>
+	</table>
 </body>
 </html>

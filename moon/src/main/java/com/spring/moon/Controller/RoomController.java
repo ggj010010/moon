@@ -110,7 +110,9 @@ public class RoomController {
 		logger.info("fileUpload");
 		
 		// 경로설정
-		String path = "C:/Moon/moon/src/main/webapp/resources/roomFileUpload/";
+		String path = "C:"
+				+ "/users/answh/Desktop/Spring"
+				+ "/Moon/moon/src/main/webapp/resources/roomFileUpload/";
 		System.out.println("path :: " + path);
 
 		String fileReName = "";
@@ -164,7 +166,9 @@ public class RoomController {
 		logger.info("fileRemove");
 		
 		// 경로설정
-		String path = "C:/Moon/moon/src/main/webapp/resources/roomFileUpload/";
+		String path = "C:"
+				+ "/users/answh/Desktop/Spring"
+				+ "/Moon/moon/src/main/webapp/resources/roomFileUpload/";
 		System.out.println("path :: " + path);
 
 		HashMap<String, String> result = new HashMap<String, String>();

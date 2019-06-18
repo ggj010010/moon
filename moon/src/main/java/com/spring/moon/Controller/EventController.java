@@ -110,7 +110,7 @@ public class EventController {
 		
 		// 경로설정
 		String path = "C:"
-//				+ "/users/km"
+				+ "/users/answh/Desktop/Spring"
 				+ "/Moon/moon/src/main/webapp/resources/eventFileUpload/";
 		
 		System.out.println("path :: " + path);
@@ -167,7 +167,7 @@ public class EventController {
 		
 		// 경로설정
 		String path = "C:"
-//				+ "/users/km"
+				+ "/users/answh/Desktop/Spring"
 				+ "/Moon/moon/src/main/webapp/resources/eventFileUpload/";
 		System.out.println("path :: " + path);
 

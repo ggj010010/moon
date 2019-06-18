@@ -596,7 +596,7 @@
 	</footer>
 	<div class="text-center copyright">
 		Powered by <a target="_blank" rel="nofollow noopener"
-			href="http://www.kyungmin.ac.kr/index.html">Moon(주)</a>
+			>Moon(주)</a>
 	</div>
 <a href="#home" class="toTop scroll"><img src ="../assets/images/drop.png"></i></a>
 	<div id="blueimp-gallery"

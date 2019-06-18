@@ -20,6 +20,7 @@
 #freecssfooter div#fcssholder div{display:none;}
 #freecssfooter div#fcssholder div:first-child{display:block;}
 #freecssfooter div#fcssholder div:first-child a{float:none;margin:0 auto;}
+
 </style></head>
 <body id="home">
 <script src="/resources/js/jquery-1.10.2.js"></script>
@@ -64,13 +65,32 @@ $j(document).ready(function() {
 });
 
 </script>
+<script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+ // ev.target.appendChild(document.getElementById(data));
+  location.href="http://localhost:8181/manager/managerMoon";
+}
+</script>
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-      <a class="navbar-brand" href="http://localhost:8181"><img src="assets/images/logo.png" alt="website template image"></a></div>
+      <a class="navbar-brand" href="http://localhost:8181"><img id="drag1" src="assets/images/logo.png" draggable="true" ondragstart="drag(event) alt="website template image"></a></div>
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+      
+
+
       	<c:choose>
       		<c:when test="${sessionScope.c.c_id == null}">
       		    <li><a href="http://localhost:8181/room">방 둘러보기</a></li>
@@ -89,7 +109,8 @@ $j(document).ready(function() {
         	</c:otherwise>
         </c:choose>
       </ul>
-    </div>
+<!--           <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+ -->    </div>
   </div>
 </nav>
 <div class="banner"><img src="assets/images/photos/banner.jpg" class="img-responsive" alt="website template image">
@@ -99,7 +120,7 @@ $j(document).ready(function() {
         <h1 class="animated fadeInDown">Hotel Moon</h1>
         <p class="animated fadeInUp">Team Moon`s Hotel</p>
       </div>
-      <a href="#information" class="arrow-nav scroll wowload fadeInDownBig"><i class="fa fa-angle-down"></i></a></div>
+      <a href="#information" class="arrow-nav scroll wowload fadeInDownBig" id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"><i class="fa fa-angle-down" ></i></a></div>
   </div>
 </div>
 <div id="information" class="spacer reserve-info">
@@ -169,9 +190,9 @@ $j(document).ready(function() {
       <div class="col-sm-4">
         <div id="TourCarousel" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
-            <div class="item active"><img src="assets/images/photos/6.jpg" class="img-responsive" alt="website template image"></div>
-            <div class="item  height-full"><img src="assets/images/photos/3.jpg" class="img-responsive" alt="website template image"></div>
-            <div class="item  height-full"><img src="assets/images/photos/4.jpg" class="img-responsive" alt="website template image"></div>
+            <div class="item active"><img  style="width:360px; height:225px;" src="assets/images/photos/6.jpg" class="img-responsive" alt="website template image"></div>
+            <div class="item  height-full"><img  style="width:360px; height:225px;" src="assets/images/photos/3.jpg" class="img-responsive" alt="website template image"></div>
+            <div class="item  height-full"><img  style="width:360px; height:225px;" src="assets/images/photos/4.jpg" class="img-responsive" alt="website template image"></div>
           </div>
           <a class="left carousel-control" href="#TourCarousel" role="button" data-slide="prev"><i class="fa fa-angle-left"></i></a> <a class="right carousel-control" href="#TourCarousel" role="button" data-slide="next"><i class="fa fa-angle-right"></i></a></div>
         <div class="caption">근처 관광지<a href="pages/gallery.php" class="pull-right"><i class="fa fa-edit"></i></a></div>
@@ -232,7 +253,7 @@ $j(document).ready(function() {
   </div>
 </footer>
 <div class="text-center copyright">Powered by <a target="_blank" rel="nofollow noopener" href="http://www.kyungmin.ac.kr/index.html">Moon(주)</a></div>
-<a href="#home" class="toTop scroll"><i class="fa fa-angle-up"></i></a>
+<a href="#home" class="toTop scroll"><img src ="assets/images/drop.png"></i></a>
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
   <div class="slides"></div>
   <h3 class="title">title</h3>

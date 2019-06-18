@@ -140,8 +140,8 @@
 	<!-- form -->
 
 	</div>
-
-
+<br><br><br><br><br><br>
+<br>
 	</div>
 <footer class="spacer">
   <div class="container">
@@ -178,77 +178,31 @@
         </ul>
                     </div>
      
-
-				<div class="social">
-					<a href="https://www.free-css.com/free-css-templates"><i
-						class="fa fa-facebook-square" data-toggle="tooltip"
-						data-placement="top" data-original-title="facebook"></i></a><a
-						href="https://www.free-css.com/free-css-templates"><i
-						class="fa fa-instagram" data-toggle="tooltip" data-placement="top"
-						data-original-title="instragram"></i></a><a
-						href="https://www.free-css.com/free-css-templates"><i
-						class="fa fa-twitter-square" data-toggle="tooltip"
-						data-placement="top" data-original-title="twitter"></i></a><a
-						href="https://www.free-css.com/free-css-templates"><i
-						class="fa fa-pinterest-square" data-toggle="tooltip"
-						data-placement="top" data-original-title="pinterest"></i></a><a
-						href="https://www.free-css.com/free-css-templates"><i
-						class="fa fa-tumblr-square" data-toggle="tooltip"
-						data-placement="top" data-original-title="tumblr"></i></a><a
-						href="https://www.free-css.com/free-css-templates"><i
-						class="fa fa-youtube-square" data-toggle="tooltip"
-						data-placement="top" data-original-title="youtube"></i></a>
-				</div>
-			</div>
-		</div>
-		</div>
-	</footer>
-	<div class="text-center copyright">
-		Powered by <a target="_blank" rel="nofollow noopener"
-			href="http://www.kyungmin.ac.kr/index.html">Moon(주)</a>
-	</div>
-	<a href="#home" class="toTop scroll"><i class="fa fa-angle-up"></i></a>
-	<div id="blueimp-gallery"
-		class="blueimp-gallery blueimp-gallery-controls">
-		<div class="slides"></div>
-		<h3 class="title">title</h3>
-		<a class="prev">&lsaquo;</a> <a class="next">&rsaquo;</a> <a
-			class="close">&times;</a>
-	</div>
-	<script src="assets/js/jquery.js"></script>
-	<script src="assets/js/wow.min.js"></script>
-	<script src="assets/js/jquery.uniform.js"></script>
-	<script src="assets/js/bootstrap.js"></script>
-	<script src="assets/js/touchSwipe.min.js"></script>
-	<script src="assets/js/respond.js"></script>
-	<script src="assets/js/jquery.blueimp-gallery.min.js"></script>
-	<script src="assets/js/script.js"></script>
-	<script type="text/javascript">
-	var gaProperty = 'UA-120201777-1';
-	var disableStr = 'ga-disable-' + gaProperty;
-	if (document.cookie.indexOf(disableStr + '=true') > -1) {
-		window[disableStr] = true;
-	}
-	function gaOptout() {
-		document.cookie = disableStr
-				+ '=true; expires=Thu, 31 Dec 2045 23:59:59 UTC; path=/';
-		window[disableStr] = true;
-		alert('Google Tracking has been deactivated');
-	}
-	(function(i, s, o, g, r, a, m) {
-		i['GoogleAnalyticsObject'] = r;
-		i[r] = i[r] || function() {
-			(i[r].q = i[r].q || []).push(arguments)
-		}, i[r].l = 1 * new Date();
-		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-		a.async = 1;
-		a.src = g;
-		m.parentNode.insertBefore(a, m)
-	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
-			'ga');
-	ga('create', 'UA-120201777-1', 'auto');
-	ga('set', 'anonymizeIp', true);
-	ga('send', 'pageview');
+     
+     
+        <div class="social"><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-facebook-square" data-toggle="tooltip" data-placement="top" data-original-title="facebook"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-instagram"  data-toggle="tooltip" data-placement="top" data-original-title="instragram"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-twitter-square" data-toggle="tooltip" data-placement="top" data-original-title="twitter"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-pinterest-square" data-toggle="tooltip" data-placement="top" data-original-title="pinterest"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-tumblr-square" data-toggle="tooltip" data-placement="top" data-original-title="tumblr"></i></a><a href="https://www.free-css.com/free-css-templates"><i class="fa fa-youtube-square" data-toggle="tooltip" data-placement="top" data-original-title="youtube"></i></a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="text-center copyright">Powered by <a target="_blank" rel="nofollow noopener" href="http://www.kyungmin.ac.kr/index.html">Moon(주)</a></div>
+<a href="#home" class="toTop scroll"><img src ="assets/images/drop.png"></i></a>
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+  <div class="slides"></div>
+  <h3 class="title">title</h3>
+  <a class="prev">&lsaquo;</a> <a class="next">&rsaquo;</a> <a class="close">&times;</a></div>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/jquery.uniform.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/touchSwipe.min.js"></script>
+<script src="assets/js/respond.js"></script>
+<script src="assets/js/jquery.blueimp-gallery.min.js"></script>
+<script src="assets/js/script.js"></script>
+<script type="text/javascript">
+var gaProperty = 'UA-120201777-1';var disableStr = 'ga-disable-' + gaProperty;if (document.cookie.indexOf(disableStr + '=true') > -1) {window[disableStr] = true;}
+function gaOptout(){document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2045 23:59:59 UTC; path=/';window[disableStr] = true;alert('Google Tracking has been deactivated');}
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-120201777-1', 'auto');ga('set', 'anonymizeIp', true);ga('send', 'pageview');
 </script>
 </body>
 </html>

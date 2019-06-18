@@ -138,7 +138,7 @@
   </div>
 </footer>
 <div class="text-center copyright">Powered by <a target="_blank" rel="nofollow noopener" href="http://www.kyungmin.ac.kr/index.html">Moon(주)</a></div>
-<a href="#home" class="toTop scroll"><i class="fa fa-angle-up"></i></a>
+<a href="#home" class="toTop scroll"><img src ="assets/images/drop.png"></i></a>
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
   <div class="slides"></div>
   <h3 class="title">title</h3>
